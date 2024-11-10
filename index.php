@@ -9,4 +9,6 @@ echo "try";
 echo "try again";
 echo "gian";
 echo "lemon";
+echo "ampogi ko";
+
 ?>

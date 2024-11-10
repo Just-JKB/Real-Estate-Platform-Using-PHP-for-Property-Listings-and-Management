@@ -27,7 +27,7 @@
 	      </div>
 	      <div class="col-md-8">
 	        	<div class="content-area">
-	        		<p>Need assistance? Property inquiries? Customer feedback? We wouldd love to hear from you!<br />
+				<p>Need assistance? Property inquiries? Customer feedback? We wouldd love to hear from you!<br />
 We are always happy to help. Get in touch with us today!</p>
 
 <p>Customer Care Hotline: +63 122345678<br />

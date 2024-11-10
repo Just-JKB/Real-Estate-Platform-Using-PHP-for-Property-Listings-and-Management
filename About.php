@@ -25,7 +25,7 @@
 	        	<div class="sidebar">
 	        	</div>
 	      </div>
-		  <p> CLAVEM is a wide range of property choices located in Lipa City area, for all types of buyers and investo <br />
+		  <p> CLAVEM is a wide range of property choices located in Lipa City area, for all types of buyers and investor <br />
 		<br />
 		Our selection of foreclosed properties includes House and Lots, Apartments, Townhouses, Condominium Units, Office Spaces, Buildings, Vacant Lots, Warehouses, as well as Agricultural Lands, Commercial Spaces, and Industrial Sites.
 		  </p>

@@ -1,4 +1,13 @@
+<<<<<<< HEAD
+<?php
+
+echo "Sample";
+echo "gian";
+
+?><!DOCTYPE html>
+=======
 <!DOCTYPE html>
+>>>>>>> ea4f2e9b8b4517cf2ee06a09ac70714402a92283
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,7 +28,7 @@
     	</div>
 		<div id="page-inner">
 	<div class="container">
-		<h2 class="pagetitle">Contact Us</h2>
+		<h2 class="pagetitle">Contact Info</h2>
 			  	<div class="row">
 	      <div class="col-md-4">
 	        	<div class="sidebar">

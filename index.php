@@ -133,25 +133,52 @@
 	              	<div class="form-group">
 	                	<label class="col-sm-4 col-xs-4 control-label">Lot Area (sqm.)</label>
 							<div class="col-sm-6 col-xs-7">
-								<select class="form-control" id="lot_area" name="lot_area"><option value="" selected="selected">Please Select</option><option value="0-250">1 sqm to 250 sqm</option><option value="251-500">251 sqm to 500 sqm</option><option value="501-750">501 sqm to 750 sqm</option><option value="751-1000">751 sqm to 1,000 sqm</option><option value="1001-1500">1,001 sqm to 1,500 sqm</option><option value="1501-2500">1,501 sqm to 2,500 sqm</option><option value="2501-1000000">2,501 sqm and above</option></select>
+								<select class="form-control" id="lot_area" name="lot_area">
+                                    <option value="" selected="selected">Please Select</option>
+                                    <option value="0-250">1 sqm to 250 sqm</option>
+                                    <option value="251-500">251 sqm to 500 sqm</option>
+                                    <option value="501-750">501 sqm to 750 sqm</option>
+                                    <option value="751-1000">751 sqm to 1,000 sqm</option>
+                                    <option value="1001-1500">1,001 sqm to 1,500 sqm</option>
+                                    <option value="1501-2500">1,501 sqm to 2,500 sqm</option>
+                                    <option value="2501-1000000">2,501 sqm and above</option></select>
 							</div>
 	              	</div>
 	              	<div class="form-group">
 	                	<label class="col-sm-4 col-xs-4 control-label">Floor Area (sqm.)</label>
 							<div class="col-sm-6 col-xs-7">
-								<select class="form-control" id="floor_area" name="floor_area"><option value="" selected="selected">Please Select</option><option value="0-250">1 sqm to 250 sqm</option><option value="251-500">251 sqm to 500 sqm</option><option value="501-750">501 sqm to 750 sqm</option><option value="751-1000">751 sqm to 1,000 sqm</option><option value="1001-1500">1,001 sqm to 1,500 sqm</option><option value="1501-2500">1,501 sqm to 2,500 sqm</option><option value="2501-1000000">2,501 sqm and above</option></select>
+								<select class="form-control" id="floor_area" name="floor_area">
+                                    <option value="" selected="selected">Please Select</option>
+                                    <option value="0-250">1 sqm to 250 sqm</option>
+                                    <option value="251-500">251 sqm to 500 sqm</option>
+                                    <option value="501-750">501 sqm to 750 sqm</option>
+                                    <option value="751-1000">751 sqm to 1,000 sqm</option>
+                                    <option value="1001-1500">1,001 sqm to 1,500 sqm</option>
+                                    <option value="1501-2500">1,501 sqm to 2,500 sqm</option>
+                                    <option value="2501-1000000">2,501 sqm and above</option>
+                                </select>
 							</div>
 	              	</div>
 	              	<div class="form-group">
 	                	<label class="col-sm-4 col-xs-4 control-label">Price Range</label>
 							<div class="col-sm-6 col-xs-7">
-								<select class="form-control" id="price" name="price"><option value="" selected="selected">Please Select</option><option value="1-500000">PHP 1 to PHP 500,000</option><option value="50001-1000000">PHP 500,001 to PHP 1,000,000</option><option value="1000001-5000000">PHP 1,000,001 to PHP 5,000,000</option><option value="5000001-10000000">PHP 5,000,001 to PHP 10,000,000</option><option value="10000001-15000000">PHP 10,000,001 to PHP 15,000,000</option><option value="15000001-20000000">PHP 15,000,001 to PHP 20,000,000</option><option value="20000001-50000000">PHP 20,000,001 to PHP 50,000,000</option><option value="50000001-above">PHP 50,000,001 and above</option></select>
+								<select class="form-control" id="price" name="price">
+                                    <option value="" selected="selected">Please Select</option>
+                                    <option value="1-500000">PHP 1 to PHP 500,000</option>
+                                    <option value="50001-1000000">PHP 500,001 to PHP 1,000,000</option>
+                                    <option value="1000001-5000000">PHP 1,000,001 to PHP 5,000,000</option>
+                                    <option value="5000001-10000000">PHP 5,000,001 to PHP 10,000,000</option>
+                                    <option value="10000001-15000000">PHP 10,000,001 to PHP 15,000,000</option>
+                                    <option value="15000001-20000000">PHP 15,000,001 to PHP 20,000,000</option>
+                                    <option value="20000001-50000000">PHP 20,000,001 to PHP 50,000,000</option>
+                                    <option value="50000001-above">PHP 50,000,001 and above</option></select>
 							</div>
 	              	</div>
 	              	<div class="form-group">
 	                	<label class="col-sm-4 col-xs-4 control-label">Property Classification</label>
 							<div class="col-sm-6 col-xs-7">
-								<select class="form-control" id="ropa_class" name="ropa_class"><option value="" selected="selected">Please Select</option><option value="1">Green Tag (in possession, with complete property documents)</option><option value="2">Yellow Tag (with special concerns either on title, tax declaration, possession, or other property documents)</option><option value="3">Red Tag (with pending court case/s - under litigation. Interested party is directed to verify status of the case from the court/s.)</option></select>
+								<select class="form-control" id="ropa_class" name="ropa_class">
+                                    <option value="" selected="selected">Please Select</option><option value="1">Green Tag (in possession, with complete property documents)</option><option value="2">Yellow Tag (with special concerns either on title, tax declaration, possession, or other property documents)</option><option value="3">Red Tag (with pending court case/s - under litigation. Interested party is directed to verify status of the case from the court/s.)</option></select>
 							</div>
 	              	</div>
 

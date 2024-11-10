@@ -11,5 +11,6 @@ echo "gian";
 echo "lemon";
 echo "ampogi ko";
 echo "echo";
+echo "sync";
 
 ?>

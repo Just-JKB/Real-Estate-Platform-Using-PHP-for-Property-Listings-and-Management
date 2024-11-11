@@ -12,5 +12,6 @@ echo "lemon";
 echo "ampogi ko";
 echo "echo";
 echo "sync";
+echo "new";
 
 ?>

@@ -181,4 +181,3 @@
                                     <option value="" selected="selected">Please Select</option><option value="1">Green Tag (in possession, with complete property documents)</option><option value="2">Yellow Tag (with special concerns either on title, tax declaration, possession, or other property documents)</option><option value="3">Red Tag (with pending court case/s - under litigation. Interested party is directed to verify status of the case from the court/s.)</option></select>
 							</div>
 	              	</div>
-

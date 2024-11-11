@@ -182,13 +182,3 @@
 							</div>
 	              	</div>
 
-              		<div class="form-group btn-block">
-                		<div class="col-sm-offset-4 col-sm-6">
-                  		<button type="submit" class="btn btn-default">Search</button>
-                		</div>
-              		</div>
-            	</form>
-          	</div>
-    
-</body>
-</html>

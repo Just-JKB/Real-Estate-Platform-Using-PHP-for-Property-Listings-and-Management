@@ -1,6 +1,5 @@
 
 <!DOCTYPE html>
->>>>>>> ea4f2e9b8b4517cf2ee06a09ac70714402a92283
 <html lang="en">
 <head>
     <meta charset="UTF-8">

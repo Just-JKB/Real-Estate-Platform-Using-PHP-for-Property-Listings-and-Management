@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-<?php
 
-echo "Sample";
-echo "gian";
-
-?><!DOCTYPE html>
-=======
 <!DOCTYPE html>
 >>>>>>> ea4f2e9b8b4517cf2ee06a09ac70714402a92283
 <html lang="en">
@@ -36,7 +29,7 @@ echo "gian";
 	      </div>
 	      <div class="col-md-8">
 	        	<div class="content-area">
-	        		<p>Need assistance? Property inquiries? Customer feedback? We wouldd love to hear from you!<br />
+				<p>Need assistance? Property inquiries? Customer feedback? We wouldd love to hear from you!<br />
 We are always happy to help. Get in touch with us today!</p>
 
 <p>Customer Care Hotline: +63 122345678<br />

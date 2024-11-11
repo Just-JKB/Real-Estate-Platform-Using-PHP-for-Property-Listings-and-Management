@@ -27,13 +27,13 @@
 	      </div>
 	      <div class="col-md-8">
 	        	<div class="content-area">
-	        		<p>Need assistance? Property inquiries? Customer feedback? We&rsquo;d love to hear from you!<br />
+	        		<p>Need assistance? Property inquiries? Customer feedback? We wouldd love to hear from you!<br />
 We are always happy to help. Get in touch with us today!</p>
 
 <p>Customer Care Hotline: +63 122345678<br />
 Customer Care Mobile: +63 9556789094<br />
 Customer Care Fax: +63 9945005100<br />
-Email: &nbsp;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7f3d2a3a313e323e31303f1d0f16511c1012510f17">[email&#160;protected]</a><br />
+Email: <a>23-33529@g.batstate-u.edu.ph</a><br/>
 Website: www.clavem.ph<br />
 Learn more about our properties, ask questions or submit an offer, drop by our Main Office at:</p>
 

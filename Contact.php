@@ -17,5 +17,30 @@
         		</div>
       	</div>
     	</div>
+		<div id="page-inner">
+	<div class="container">
+		<h2 class="pagetitle">Contact Us</h2>
+			  	<div class="row">
+	      <div class="col-md-4">
+	        	<div class="sidebar">
+	        	</div>
+	      </div>
+	      <div class="col-md-8">
+	        	<div class="content-area">
+	        		<p>Need assistance? Property inquiries? Customer feedback? We&rsquo;d love to hear from you!<br />
+We are always happy to help. Get in touch with us today!</p>
+
+<p>Customer Care Hotline: +63 122345678<br />
+Customer Care Mobile: +63 9556789094<br />
+Customer Care Fax: +63 9945005100<br />
+Email: &nbsp;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7f3d2a3a313e323e31303f1d0f16511c1012510f17">[email&#160;protected]</a><br />
+Website: www.clavem.ph<br />
+Learn more about our properties, ask questions or submit an offer, drop by our Main Office at:</p>
+
+<p>BSIT 2102<br />
+Batangas State University<br />
+Marauoy<br />
+Lipa City, Philippines</p>
+
 </body>
 </html>

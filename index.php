@@ -6,31 +6,30 @@
     <title>Website</title>
     <link href="style.css" rel="stylesheet">
 </head>
-<body style="background-color: #1a1a2e;">
+<body>
 
-<div id="header">
-		<img src="Logos.png" class="desktop-header">
-    </div>
+
+    <nav>
+<div class="logo">Clavem</div>
+
+<ul class="navbar">
+		    <li><a href="index.php">Home</a></li>
+		    <li><a href="About.php">About Us</a></li>
+		    <li><a href="Contact.php">Contact Us</a></li>
+	    </ul>
    
+<div class="search">
+    <form>
+        <input type="text" class="input" placeholder="Search...">
+        <button class="sbutton" type="submit">Search</button>
+    </form>
+    </nav>
 
-<div id="primary">
     
-<div class="container">
-      	<div class="searchwrap">
-					<input type="text" name="s" class="input">
-					<button class="searchbtn" type="submit">Search</button>
-				</form>
-      	</div>
-        		<div class="navbar">
-					<ul>
-						<li><a href="http://localhost:3000/index.php">Home</a></li>
-						<li><a href="http://localhost:3000/About.php">About Us</a></li>
-						<li><a href="http://localhost:3000/Contact.php">Contact Us</a></li>
-					</ul>
-      	</div>
-    	</div>
-  	</div>
-      <div id="home-filtering">
+  	
+
+
+<div id="home-filtering">
    <div class="container">
       <div class="col-md-7">
         	<div class="tab-content" id="homefitering-fields">

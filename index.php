@@ -6,24 +6,27 @@
     <title>Website</title>
     <link href="style.css" rel="stylesheet">
 </head>
-<body>
-    <h1>CLAVEM</h1>
-    <p>Real Estate Platform for Property Listing and Management</p>
-  	<div id="primary">
-   	<div class="container">
+<body style="background-color: #1a1a2e;">
+
+<div id="header">
+		<img src="Logos.png" class="desktop-header">
+    </div>
+   
+
+<div id="primary">
+    
+<div class="container">
       	<div class="searchwrap">
 					<input type="text" name="s" class="input">
 					<button class="searchbtn" type="submit">Search</button>
 				</form>
       	</div>
-      	<div class="collapse" id="primarymenu-collapse">
-        		<div class="navmenu">
+        		<div class="navbar">
 					<ul>
 						<li><a href="http://localhost:3000/index.php">Home</a></li>
 						<li><a href="http://localhost:3000/About.php">About Us</a></li>
 						<li><a href="http://localhost:3000/Contact.php">Contact Us</a></li>
-											</ul>
-        		</div>
+					</ul>
       	</div>
     	</div>
   	</div>

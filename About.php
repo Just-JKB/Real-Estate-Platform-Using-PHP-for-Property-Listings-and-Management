@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Clavem</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>About us</h1>
-    <div class="collapse" id="primarymenu-collapse">
-        		<div class="navmenu">
-					<ul>
-						<li><a href="http://localhost:3000/index.php">Home</a></li>
-						<li><a href="http://localhost:3000/About.php">About Us</a></li>
-						<li><a href="http://localhost:3000/Contact.php">Contact Us</a></li>
-											</ul>
-        		</div>
-      	</div>
-    	</div>
-		<div id="page-inner">
-	<div class="container">
+<nav>
+<div class="logo">About</div>
+
+<ul class="navbar">
+		    <li><a href="index.php">Home</a></li>
+		    <li><a href="About.php">About Us</a></li>
+		    <li><a href="Contact.php">Contact Us</a></li>
+	    </ul>
+    
 		<h2 class="pagetitle">About Us</h2>
 			  	<div class="row">
 	      <div class="col-md-4">
@@ -53,5 +51,6 @@ RED TAG: Our experienced Sales Team can assist you and provide win-win solutions
 <br />
 Pending court cases against the Bank filed by the previous owner or 3rd party claimants.<br />
 Titles with annotation/s, as to adverse claims or Lis pendens</p>
+
 </body>
 </html>

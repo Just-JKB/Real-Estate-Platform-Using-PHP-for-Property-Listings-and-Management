@@ -57,7 +57,7 @@ $property_classes = [
 </head>
 <body>
 
-<nav>
+    <nav>
 <div class="logo">Clavem</div>
 
 <ul class="navbar">
@@ -65,8 +65,7 @@ $property_classes = [
 		    <li><a href="About.php">About Us</a></li>
 		    <li><a href="Contact.php">Contact Us</a></li>
 	    </ul>
-   
-
+ 
     </nav>
 
 <div class="container mt-5"> 

@@ -17,11 +17,7 @@
 		    <li><a href="Contact.php">Contact Us</a></li>
 	    </ul>
    
-<div class="search">
-    <form>
-        <input type="text" class="input" placeholder="Search...">
-        <button class="sbutton" type="submit">Search</button>
-    </form>
+
     </nav>
 </body>
 </html>

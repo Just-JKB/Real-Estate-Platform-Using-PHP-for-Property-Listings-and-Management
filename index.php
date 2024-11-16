@@ -66,14 +66,12 @@ $property_classes = [
 		    <li><a href="Contact.php">Contact Us</a></li>
 	    </ul>
    
-<div class="search">
-    <form method="POST" action="search.php">
-        <input type="text" class="input" placeholder="Search...">
-        <button class="sbutton" type="submit">Search</button>
-    </form>
+
     </nav>
 
-<div class="container mt-5">
+<div class="container mt-5"> 
+    <br>
+    <br>
     <h3>Find Properties for Sale</h3>
     <form method="POST" action="search.php">
         <!-- Category  -->

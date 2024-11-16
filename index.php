@@ -58,7 +58,7 @@ $property_classes = [
 <body>
 
 <nav>
-<div class="logo">Clavem</div>
+<div class="logo">CLAVEM</div>
 
 <ul class="navbar">
 		    <li><a href="index.php">Home</a></li>

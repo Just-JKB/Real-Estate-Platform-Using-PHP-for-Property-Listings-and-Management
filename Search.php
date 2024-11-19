@@ -1,5 +1,5 @@
 <?php
-require_once 'Searcher.php';
+require_once 'SearchHandler.php';
 
 echo <<<HTML
 <!DOCTYPE html>

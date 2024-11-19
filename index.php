@@ -29,6 +29,7 @@ $property_classes = $propertyData->getPropertyClasses();
             <li><a href="index.php">Home</a></li>
             <li><a href="About.php">About Us</a></li>
             <li><a href="Contact.php">Contact Us</a></li>
+
         </ul>
     </nav>
 
@@ -105,7 +106,7 @@ $property_classes = $propertyData->getPropertyClasses();
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="btn btn-primary">Search</button>
+            <button style="background-color: #cba560; border-color:#cba560" type="submit" class="btn btn-primary">Search</button>
         </form>
     </div>
 </body>

@@ -11,6 +11,6 @@ echo "Welcome, " . htmlspecialchars($_SESSION['username']) . "!<br>";
 echo "You have user access.<br><br>";
 
 // User functionality: For example, browse property listings, view details, etc.
-echo "<a href='browse_properties.php'>Browse Properties</a><br>";
+echo "<a href='index.php'>Browse Properties</a><br>";
 echo "<a href='logout.php'>Logout</a><br>";
 ?>

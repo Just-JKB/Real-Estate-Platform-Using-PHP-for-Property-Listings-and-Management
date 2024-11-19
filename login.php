@@ -39,17 +39,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<!-- Login Form -->
-<form method="POST">
-    <label for="username">Username:</label><br>
-    <input type="text" name="username" id="username" required><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylelogin.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <label for="password">Password:</label><br>
-    <input type="password" name="password" id="password" required><br>
+<nav>
+<div class="logo">Clavem</div>
+</nav>
 
-    <?php if (isset($error)): ?>
-        <p style="color: red;"><?php echo $error; ?></p>
-    <?php endif; ?>
+<div class="login-container">
+    <div class="login-form">
+        <h2>Real Estate Management Login</h2>
+        <form method="POST">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="Enter your username" required>
 
-    <button type="submit">Login</button>
-</form>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password" required>
+
+            <?php if (isset($error)): ?>
+                <p class="error"><?php echo $error; ?></p>
+            <?php endif; ?>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

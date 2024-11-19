@@ -6,11 +6,31 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
     header('Location: login.php');  // Redirect to login page if not logged in or not an admin
     exit;
 }
-
-echo "Welcome, Admin " . htmlspecialchars($_SESSION['username']) . "!<br>";
-echo "You have admin access.<br><br>";
-
-// Admin functionality: For example, view and manage property listings, users, etc.
-echo "<a href='manage_properties.php'>Manage Properties</a><br>";
-echo "<a href='logout.php'>Logout</a><br>";
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Real Estate Management</title></head>
+<body>
+
+    <header>
+        <h1>Real Estate Management System</h1>
+    </header>
+
+    <div class="container">
+        <p class="admin-welcome">Welcome, Admin <?php echo htmlspecialchars($_SESSION['username']); ?>!</p>
+        <p>You have admin access. From here, you can manage properties, users, and more.</p>
+
+        <a href="manage_properties.php">Manage Properties</a>
+        <a href="logout.php" class="logout">Logout</a>
+    </div>
+
+    <footer>
+        <p>&copy; <?php echo date("Y"); ?> Real Estate Management System. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

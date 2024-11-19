@@ -1,12 +1,12 @@
 <?php
 class Database {
     private $host = "localhost";
-    private $db_name = "property";
+    private $db_name = "property_search";
     private $username = "root";
     private $password = "";
     public $conn;
 
-    public function getConnect() {
+    public function getConnection() {
         $this->conn = null;
 
         try {
@@ -20,3 +20,5 @@ class Database {
     }
 }
 ?>
+
+

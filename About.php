@@ -11,10 +11,10 @@
 <nav>
 <div class="logo">About</div>
 
-<ul class="navbar">
-		    <li><a href="index.php">Home</a></li>
-		    <li><a href="About.php">About Us</a></li>
-		    <li><a href="Contact.php">Contact Us</a></li>
+		<ul class="navbar">
+			<li><a href="index.php">Home</a></li>
+            <li><a href="About.php">About Us</a></li>
+            <li><a href="Contact.php">Contact Us</a></li>
 	    </ul>
     
 		<h2 class="pagetitle">About Us</h2>

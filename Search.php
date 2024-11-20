@@ -29,14 +29,15 @@ HTML;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $searchHandler = new SearchHandler();
     $data = [
-        'categories' => $_POST['categories'] ?? '',
-        'locations' => $_POST['locations'] ?? '',
-        'lot_areas' => $_POST['lot_areas'] ?? '',
-        'floor_areas' => $_POST['floor_areas'] ?? '',
-        'price_ranges' => $_POST['price_ranges'] ?? '',
-        'property_classes' => $_POST['property_classes'] ?? '',
+        'categories' => $_POST['category'] ?? '',
+        'locations' => $_POST['location'] ?? '',
+        'lot_areas' => $_POST['lot_area'] ?? '',
+        'floor_areas' => $_POST['floor_area'] ?? '',
+        'price_ranges' => $_POST['price_range'] ?? '',
+        'property_classes' => $_POST['property_class'] ?? '',
         'sort_by' => $_POST['sort_by'] ?? '',
     ];
+    
 
     $results = $searchHandler->handleSearch($data);
 

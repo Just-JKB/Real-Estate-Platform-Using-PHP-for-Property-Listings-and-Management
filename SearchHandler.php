@@ -1,6 +1,6 @@
 <?php
 
-require_once 'db properties.php';
+require_once 'DatabaseConnection.php';
 
 class SearchHandler
 {

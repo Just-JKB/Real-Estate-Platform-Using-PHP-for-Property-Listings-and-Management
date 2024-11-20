@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Fields.php';
+require_once 'PropertyData.php';
 
 $propertyData = new PropertyData();
 

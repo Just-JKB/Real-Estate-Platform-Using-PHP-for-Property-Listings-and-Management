@@ -30,7 +30,6 @@ $property_classes = $propertyData->getPropertyClasses();
             <li><a href="index.php">Home</a></li>
             <li><a href="About.php">About Us</a></li>
             <li><a href="Contact.php">Contact Us</a></li>
-            <li><a href="manage_properties.php">Admin</a></li>
         </ul>
     </nav>
 

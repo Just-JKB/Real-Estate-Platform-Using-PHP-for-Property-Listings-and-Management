@@ -110,7 +110,7 @@ $property_classes = ['Class 1 - Properties that are premium, well-located buildi
             <li><a href="index.php">Home</a></li>
             <li><a href="About.php">About Us</a></li>
             <li><a href="Contact.php">Contact Us</a></li>
-            <li><a href="logout.php">Logout</a></li>
+            <li><a href="javascript:void(0);" onclick="confirmLogout()">Logout</a></li>
         </ul>
     </nav>
 
@@ -230,6 +230,24 @@ $property_classes = ['Class 1 - Properties that are premium, well-located buildi
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = "?action=delete&id=" + propertyId;
+                }
+            });
+        }
+    </script>
+
+    <script>
+        function confirmLogout() {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Do you want to log out?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, log me out!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "logout.php";
                 }
             });
         }

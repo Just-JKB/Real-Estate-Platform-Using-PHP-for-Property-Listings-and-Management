@@ -34,7 +34,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'user') {
                 <h3>What would you like to do?</h3>
                 <ul>
                     <li><a href="index.php" class="button">Browse Properties</a></li>
-                    <li><a href="logout.php" class="button logout">Logout</a></li>
+                    
                 </ul>
             </div>
         </main>

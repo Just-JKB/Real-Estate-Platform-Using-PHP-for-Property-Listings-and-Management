@@ -79,3 +79,11 @@
             font-size: 20px;
         }
     }
+    .logo{
+        position: absolute; /* Positioning the element absolutely */
+        top: 20px; /* Add space from the top */
+        left: 20px; /* Add space from the left */
+    }
+    .banner{
+        margin-left: 10px; /* Space between the image and the text */
+    }

@@ -110,6 +110,7 @@ $property_classes = ['Class 1 - Properties that are premium, well-located buildi
             <li><a href="index.php">Home</a></li>
             <li><a href="About.php">About Us</a></li>
             <li><a href="Contact.php">Contact Us</a></li>
+            <li><a href="logout.php">Logout</a></li>
         </ul>
     </nav>
 

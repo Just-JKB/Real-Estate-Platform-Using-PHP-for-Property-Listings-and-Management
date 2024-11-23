@@ -62,9 +62,31 @@ if ($action === 'delete' && isset($_GET['id'])) {
 // Get all properties
 $properties = $propertyCRUD->getProperties();
 
+// Handle edit request
+$editProperty = null;
+if ($action === 'edit' && isset($_GET['id'])) {
+    $id = $_GET['id'];
+    foreach ($properties as $property) {
+        if ($property['property_id'] == $id) {
+            $editProperty = $property;
+            break;
+        }
+    }
+}
+
 // Define categories, locations, and property classes
 $categories = ['Apartment', 'Building', 'Commercial Space', 'Condominium', 'House & Lot', 'Lot w/ Unfinished Structure', 'Lot with Structure', 'Others', 'Townhouse', 'Vacant Lot', 'Warehouse'];
-$locations = ["Adya", "Anilao", "Antipolo del Norte", "Banaybanay", "Calamias", "Mataas na Lupa", "San Guillermo", "San Sebastian", "Talisay"];
+$locations = [
+    "Adya", "Anilao", "Anilao-Labac", "Antipolo del Norte", "Antipolo del Sur", "Bagong Pook", "Balintawak", "Banaybanay", "Bolbok",
+     "Bugtong na Pulo", "Bulacnin", "Bulaklakan", "Calamias", "Cumba", "Dagatan", "Duhatan", "Halang", "Inosloban", "Kayumanggi", "Latag",
+      "Lodlod", "Lumbang", "Mabini", "Malagonlong", "Malitlit", "Marauoy", "Mataas na Lupa", "Munting Pulo", "Pagolingin Bata", 
+      "Pagolingin East", "Pagolingin West", "Pangao", "Pinagkawitan", "Pinagtongulan", "Plaridel", "Poblacion Barangay 1", 
+      "Poblacion Barangay 2", "Poblacion Barangay 3", "Poblacion Barangay 4", "Poblacion Barangay 5", "Poblacion Barangay 6", 
+      "Poblacion Barangay 7", "Poblacion Barangay 8", "Poblacion Barangay 9", "Poblacion Barangay 9-A", "Poblacion Barangay 10", 
+      "Poblacion Barangay 11", "Poblacion Barangay 12", "Pusil", "Quezon", "Rizal", "Sabang", "Sampaguita", "San Benito", "San Carlos", 
+      "San Celestino", "San Francisco", "San Guillermo", "San Jose", "San Lucas", "San Salvador", "San Sebastian", "Santo Niño", 
+      "Santo Toribio", "Sapac", "Sico", "Talisay", "Tambo", "Tangob", "Tanguay", "Tibig", "Tipacan"
+];
 $property_classes = ['1', '2', '3'];
 ?>
 
@@ -90,54 +112,67 @@ $property_classes = ['1', '2', '3'];
 
     <!-- Main content -->
     <div class="container mt-5">
+        <br>
         <h1>Manage Properties</h1>
         <?php if ($message): ?>
             <div class="alert alert-info"><?= htmlspecialchars($message) ?></div>
         <?php endif; ?>
 
-        <!-- Add Property Form -->
-        <h2>Post a New Property</h2>
-        <form method="POST" action="?action=create">
+        <!-- Add/Edit Property Form -->
+        <h2><?= $editProperty ? "Edit Property" : "Post a New Property" ?></h2>
+        <form method="POST" action="?action=<?= $editProperty ? 'update' : 'create' ?>">
+            <?php if ($editProperty): ?>
+                <input type="hidden" name="id" value="<?= htmlspecialchars($editProperty['property_id']) ?>">
+            <?php endif; ?>
             <div class="form-group">
                 <label>Category</label>
-                <select name="categories" class="form-control" required>
+                <select name="categories" class="form-control" <?= $editProperty ? 'disabled' : '' ?> required>
                     <option value="">Select Category</option>
                     <?php foreach ($categories as $category): ?>
-                        <option value="<?= htmlspecialchars($category) ?>"><?= htmlspecialchars($category) ?></option>
+                        <option value="<?= htmlspecialchars($category) ?>" <?= $editProperty && $editProperty['categories'] == $category ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($category) ?>
+                        </option>
                     <?php endforeach; ?>
                 </select>
             </div>
             <div class="form-group">
                 <label>Location</label>
-                <select name="locations" class="form-control" required>
+                <select name="locations" class="form-control" <?= $editProperty ? 'disabled' : '' ?> required>
                     <option value="">Select Location</option>
                     <?php foreach ($locations as $location): ?>
-                        <option value="<?= htmlspecialchars($location) ?>"><?= htmlspecialchars($location) ?></option>
+                        <option value="<?= htmlspecialchars($location) ?>" <?= $editProperty && $editProperty['locations'] == $location ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($location) ?>
+                        </option>
                     <?php endforeach; ?>
                 </select>
             </div>
             <div class="form-group">
                 <label>Lot Area</label>
-                <input type="text" name="lot_areas" class="form-control" required>
+                <input type="text" name="lot_areas" class="form-control" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required>
             </div>
             <div class="form-group">
                 <label>Floor Area</label>
-                <input type="text" name="floor_areas" class="form-control" required>
+                <input type="text" name="floor_areas" class="form-control" value="<?= $editProperty ? htmlspecialchars($editProperty['floor_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required>
             </div>
             <div class="form-group">
                 <label>Price</label>
-                <input type="number" name="price" class="form-control" required>
+                <input type="number" name="price_ranges" class="form-control" value="<?= $editProperty ? htmlspecialchars($editProperty['price_ranges']) : '' ?>"  required>
             </div>
             <div class="form-group">
                 <label>Property Class</label>
                 <select name="property_classes" class="form-control" required>
                     <option value="">Select Property Class</option>
                     <?php foreach ($property_classes as $property_class): ?>
-                        <option value="<?= htmlspecialchars($property_class) ?>"><?= htmlspecialchars($property_class) ?></option>
+                        <option value="<?= htmlspecialchars($property_class) ?>" <?= $editProperty && $editProperty['property_classes'] == $property_class ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($property_class) ?>
+                        </option>
                     <?php endforeach; ?>
                 </select>
             </div>
-            <button type="submit" class="btn btn-success">Post Property</button>
+            <button type="submit" class="btn btn-success"><?= $editProperty ? "Update Property" : "Post Property" ?></button>
+            <?php if ($editProperty): ?>
+                <a href="manage_properties.php" class="btn btn-secondary">Cancel</a>
+            <?php endif; ?>
         </form>
 
         <!-- List Properties -->

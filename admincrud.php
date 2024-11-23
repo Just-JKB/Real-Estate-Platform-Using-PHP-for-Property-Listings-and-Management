@@ -19,7 +19,7 @@ class PropertyCRUD {
             ':locations' => $data['locations'],
             ':lot_areas' => $data['lot_areas'],
             ':floor_areas' => $data['floor_areas'],
-            ':price_ranges' => $data['price'],
+            ':price_ranges' => $data['price_ranges'],
             ':property_classes' => $data['property_classes'],
         ]);
     }
@@ -29,6 +29,14 @@ class PropertyCRUD {
         $query = "SELECT * FROM property";
         $stmt = $this->pdo->query($query);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Get a single property by ID (for editing)
+    public function getPropertyById($property_id) {
+        $query = "SELECT * FROM property WHERE property_id = :property_id";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute([':property_id' => $property_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     // Update a property

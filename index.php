@@ -2,6 +2,7 @@
 
 require_once 'PropertyData.php';
 
+
 $propertyData = new PropertyData();
 
 $categories = $propertyData->getCategories();

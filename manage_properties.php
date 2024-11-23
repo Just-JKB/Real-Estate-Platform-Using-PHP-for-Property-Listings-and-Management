@@ -112,6 +112,7 @@ $property_classes = ['1', '2', '3'];
 
     <!-- Main content -->
     <div class="container mt-5">
+        <br>
         <h1>Manage Properties</h1>
         <?php if ($message): ?>
             <div class="alert alert-info"><?= htmlspecialchars($message) ?></div>

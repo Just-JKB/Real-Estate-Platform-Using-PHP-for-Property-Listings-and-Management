@@ -130,7 +130,7 @@ $property_classes = ['Class 1 - Properties that are premium, well-located buildi
             <div class="form-group">
                 <label>Category</label>
                 <select name="categories" class="form-control" <?= $editProperty ? 'disabled' : '' ?> required>
-                    <option value="">Select Category</option>
+                    <option value="">-Select Category-</option>
                     <?php foreach ($categories as $category): ?>
                         <option value="<?= htmlspecialchars($category) ?>" <?= $editProperty && $editProperty['categories'] == $category ? 'selected' : '' ?>>
                             <?= htmlspecialchars($category) ?>
@@ -141,7 +141,7 @@ $property_classes = ['Class 1 - Properties that are premium, well-located buildi
             <div class="form-group">
                 <label>Location</label>
                 <select name="locations" class="form-control" <?= $editProperty ? 'disabled' : '' ?> required>
-                    <option value="">Select Location</option>
+                    <option value="">-Select Location-</option>
                     <?php foreach ($locations as $location): ?>
                         <option value="<?= htmlspecialchars($location) ?>" <?= $editProperty && $editProperty['locations'] == $location ? 'selected' : '' ?>>
                             <?= htmlspecialchars($location) ?>
@@ -151,20 +151,21 @@ $property_classes = ['Class 1 - Properties that are premium, well-located buildi
             </div>
             <div class="form-group">
                 <label>Lot Area</label>
-                <input type="text" name="lot_areas" class="form-control" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required>
+                <input type="text" name="lot_areas" class="form-control" placeholder="Enter Lot Area" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required >
+                
             </div>
             <div class="form-group">
                 <label>Floor Area</label>
-                <input type="text" name="floor_areas" class="form-control" value="<?= $editProperty ? htmlspecialchars($editProperty['floor_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required>
+                <input type="text" name="floor_areas" class="form-control" required placeholder="Enter Floor Area" value="<?= $editProperty ? htmlspecialchars($editProperty['floor_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required>
             </div>
             <div class="form-group">
                 <label>Price</label>
-                <input type="number" name="price_ranges" class="form-control" value="<?= $editProperty ? htmlspecialchars($editProperty['price_ranges']) : '' ?>"  required>
+                <input type="number" name="price_ranges" class="form-control" required placeholder="Enter Price" value="<?= $editProperty ? htmlspecialchars($editProperty['price_ranges']) : '' ?>"  required>
             </div>
             <div class="form-group">
                 <label>Property Class</label>
                 <select name="property_classes" class="form-control" required>
-                    <option value="">Select Property Class</option>
+                    <option value="">-Select Property Class-</option>
                     <?php foreach ($property_classes as $property_class): ?>
                         <option value="<?= htmlspecialchars($property_class) ?>" <?= $editProperty && $editProperty['property_classes'] == $property_class ? 'selected' : '' ?>>
                             <?= htmlspecialchars($property_class) ?>

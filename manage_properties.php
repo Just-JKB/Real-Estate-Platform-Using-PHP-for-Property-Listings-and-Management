@@ -87,7 +87,10 @@ $locations = [
       "San Celestino", "San Francisco", "San Guillermo", "San Jose", "San Lucas", "San Salvador", "San Sebastian", "Santo Niño", 
       "Santo Toribio", "Sapac", "Sico", "Talisay", "Tambo", "Tangob", "Tanguay", "Tibig", "Tipacan"
 ];
-$property_classes = ['1', '2', '3'];
+$property_classes = ['Class 1 - Properties that are premium, well-located buildings with top amenities, high-income tenants, low vacancy rates, and minimal maintenance.',
+                    'Class 2 - Properties that are older, lower-income buildings with renovation potential, offering higher CAP rates and lower rents than Class 1.',
+                    'Class 3 - Properties are over 20 years old, in need of renovation, and offer the lowest rental rates, requiring improvements for steady cash flow.'
+];
 ?>
 
 <!DOCTYPE html>

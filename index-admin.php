@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($_SESSION['role'] == 'admin') {
                 header('Location: admin_dashboard.php');  // Redirect to Admin Dashboard
             } else {
-                header('Location: user_dashboard.php');  // Redirect to User Dashboard
+                header('Location: index.php');  // Redirect to User Dashboard
             }
             exit;
         } else {
@@ -46,17 +46,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clavem</title>
     <link rel="stylesheet" href="stylelogin.css">
-    <link rel="stylesheet" href="stylelogin.css">
 </head>
 <body> 
 
 <nav>
     <div class="logo">
-    <img src="clavem_logo.png" alt="Clavem Logo" height="50"> <!-- Add your logo image here -->
+    <div class="Banner">Clavem</div>
+    <img src="logo\clavem_logo.png" alt="Clavem" height="50"> <!-- Add your logo image here -->
     </div>
 </nav>
 
-<div class="login-container">                                                                                                                                                                                                                                                                                                                       login-form">
+<div class= "login-container" >                                                                                                                                                                                                                                                                                                                    
         <h2>Real Estate Management Login</h2>
         <form method="POST">
             <label for="username">Username</label>

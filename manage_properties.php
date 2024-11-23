@@ -107,6 +107,7 @@ $property_classes = ['1', '2', '3'];
             <li><a href="index.php">Home</a></li>
             <li><a href="About.php">About Us</a></li>
             <li><a href="Contact.php">Contact Us</a></li>
+            <li><a href="logout.php">Logout</a></li>
         </ul>
     </nav>
 

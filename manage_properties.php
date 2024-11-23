@@ -11,13 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = $_POST;
         if ($propertyCRUD->createProperty($data)) {
             $message = "Property created successfully!";
-            $showAlert = true; // Variable to trigger SweetAlert
+            $showAlert = true;
             $alertTitle = "Success!";
             $alertText = "Property added successfully!";
             $alertIcon = "success";
         } else {
             $message = "Failed to create property.";
-            $showAlert = true; // Variable to trigger SweetAlert
+            $showAlert = true;
             $alertTitle = "Try Again!";
             $alertText = "Failed to create property.";
             $alertIcon = "error";
@@ -64,18 +64,19 @@ $properties = $propertyCRUD->getProperties();
 
 // Define categories, locations, and property classes
 $categories = ['Apartment', 'Building', 'Commercial Space', 'Condominium', 'House & Lot', 'Lot w/ Unfinished Structure', 'Lot with Structure', 'Others', 'Townhouse', 'Vacant Lot', 'Warehouse'];
-$locations = ["Adya", "Anilao", "Anilao-Labac", "Antipolo del Norte", "Antipolo del Sur", "Bagong Pook", "Balintawak", "Banaybanay", "Bolbok", "Bugtong na Pulo", "Bulacnin", "Bulaklakan", "Calamias", "Cumba", "Dagatan", "Duhatan", "Halang", "Inosloban", "Kayumanggi", "Latag", "Lodlod", "Lumbang", "Mabini", "Malagonlong", "Malitlit", "Marauoy", "Mataas na Lupa", "Munting Pulo", "Pagolingin Bata", "Pagolingin East", "Pagolingin West", "Pangao", "Pinagkawitan", "Pinagtongulan", "Plaridel", "Poblacion Barangay 1", "Poblacion Barangay 2", "Poblacion Barangay 3", "Poblacion Barangay 4", "Poblacion Barangay 5", "Poblacion Barangay 6", "Poblacion Barangay 7", "Poblacion Barangay 8", "Poblacion Barangay 9", "Poblacion Barangay 9-A", "Poblacion Barangay 10", "Poblacion Barangay 11", "Poblacion Barangay 12", "Pusil", "Quezon", "Rizal", "Sabang", "Sampaguita", "San Benito", "San Carlos", "San Celestino", "San Francisco", "San Guillermo", "San Jose", "San Lucas", "San Salvador", "San Sebastian", "Santo Niño", "Santo Toribio", "Sapac", "Sico", "Talisay", "Tambo", "Tangob", "Tanguay", "Tibig", "Tipacan"];
+$locations = ["Adya", "Anilao", "Antipolo del Norte", "Banaybanay", "Calamias", "Mataas na Lupa", "San Guillermo", "San Sebastian", "Talisay"];
 $property_classes = ['1', '2', '3'];
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clavem</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="Styles\style.css">
+    <link rel="stylesheet" href="Styles/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <nav>
@@ -84,13 +85,11 @@ $property_classes = ['1', '2', '3'];
             <li><a href="index.php">Home</a></li>
             <li><a href="About.php">About Us</a></li>
             <li><a href="Contact.php">Contact Us</a></li>
-
         </ul>
     </nav>
 
     <!-- Main content -->
     <div class="container mt-5">
-        <br><br>
         <h1>Manage Properties</h1>
         <?php if ($message): ?>
             <div class="alert alert-info"><?= htmlspecialchars($message) ?></div>
@@ -138,7 +137,7 @@ $property_classes = ['1', '2', '3'];
                     <?php endforeach; ?>
                 </select>
             </div>
-            <button type="submit" class="btn btn-success" style="background-color:#cba560; outline-color:#cba560;">Post Property</button>
+            <button type="submit" class="btn btn-success">Post Property</button>
         </form>
 
         <!-- List Properties -->
@@ -167,10 +166,7 @@ $property_classes = ['1', '2', '3'];
                         <td><?= number_format($property['price_ranges'], 2) ?></td>
                         <td><?= htmlspecialchars($property['property_classes']) ?></td>
                         <td>
-                            <!-- Edit button link -->
                             <a href="?action=edit&id=<?= $property['property_id'] ?>" class="btn btn-primary btn-sm">Edit</a>
-                            
-                            <!-- Delete button with SweetAlert2 confirmation -->
                             <a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $property['property_id'] ?>)">
                                 Delete
                             </a>
@@ -182,16 +178,6 @@ $property_classes = ['1', '2', '3'];
     </div>
 
     <script>
-        // Show SweetAlert2 message based on PHP message
-        <?php if (isset($showAlert) && $showAlert): ?>
-            Swal.fire({
-                title: "<?= $alertTitle ?>",
-                text: "<?= $alertText ?>",
-                icon: "<?= $alertIcon ?>"
-            });
-        <?php endif; ?>
-
-        // SweetAlert confirmation for deletion
         function confirmDelete(propertyId) {
             Swal.fire({
                 title: "Are you sure?",
@@ -203,17 +189,20 @@ $property_classes = ['1', '2', '3'];
                 confirmButtonText: "Yes, delete it!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Redirect to delete URL
                     window.location.href = "?action=delete&id=" + propertyId;
-                    // Show success message after deletion
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                    });
                 }
             });
         }
     </script>
+
+    <?php if (isset($showAlert) && $showAlert): ?>
+        <script>
+            Swal.fire({
+                title: "<?= $alertTitle ?>",
+                text: "<?= $alertText ?>",
+                icon: "<?= $alertIcon ?>"
+            });
+        </script>
+    <?php endif; ?>
 </body>
 </html>

@@ -11,13 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = $_POST;
         if ($propertyCRUD->createProperty($data)) {
             $message = "Property created successfully!";
-            $showAlert = true; // Variable to trigger SweetAlert
+            $showAlert = true;
             $alertTitle = "Success!";
             $alertText = "Property added successfully!";
             $alertIcon = "success";
         } else {
             $message = "Failed to create property.";
-            $showAlert = true; // Variable to trigger SweetAlert
+            $showAlert = true;
             $alertTitle = "Try Again!";
             $alertText = "Failed to create property.";
             $alertIcon = "error";
@@ -62,20 +62,46 @@ if ($action === 'delete' && isset($_GET['id'])) {
 // Get all properties
 $properties = $propertyCRUD->getProperties();
 
+// Handle edit request
+$editProperty = null;
+if ($action === 'edit' && isset($_GET['id'])) {
+    $id = $_GET['id'];
+    foreach ($properties as $property) {
+        if ($property['property_id'] == $id) {
+            $editProperty = $property;
+            break;
+        }
+    }
+}
+
 // Define categories, locations, and property classes
 $categories = ['Apartment', 'Building', 'Commercial Space', 'Condominium', 'House & Lot', 'Lot w/ Unfinished Structure', 'Lot with Structure', 'Others', 'Townhouse', 'Vacant Lot', 'Warehouse'];
-$locations = ["Adya", "Anilao", "Anilao-Labac", "Antipolo del Norte", "Antipolo del Sur", "Bagong Pook", "Balintawak", "Banaybanay", "Bolbok", "Bugtong na Pulo", "Bulacnin", "Bulaklakan", "Calamias", "Cumba", "Dagatan", "Duhatan", "Halang", "Inosloban", "Kayumanggi", "Latag", "Lodlod", "Lumbang", "Mabini", "Malagonlong", "Malitlit", "Marauoy", "Mataas na Lupa", "Munting Pulo", "Pagolingin Bata", "Pagolingin East", "Pagolingin West", "Pangao", "Pinagkawitan", "Pinagtongulan", "Plaridel", "Poblacion Barangay 1", "Poblacion Barangay 2", "Poblacion Barangay 3", "Poblacion Barangay 4", "Poblacion Barangay 5", "Poblacion Barangay 6", "Poblacion Barangay 7", "Poblacion Barangay 8", "Poblacion Barangay 9", "Poblacion Barangay 9-A", "Poblacion Barangay 10", "Poblacion Barangay 11", "Poblacion Barangay 12", "Pusil", "Quezon", "Rizal", "Sabang", "Sampaguita", "San Benito", "San Carlos", "San Celestino", "San Francisco", "San Guillermo", "San Jose", "San Lucas", "San Salvador", "San Sebastian", "Santo Niño", "Santo Toribio", "Sapac", "Sico", "Talisay", "Tambo", "Tangob", "Tanguay", "Tibig", "Tipacan"];
-$property_classes = ['1', '2', '3'];
+$locations = [
+    "Adya", "Anilao", "Anilao-Labac", "Antipolo del Norte", "Antipolo del Sur", "Bagong Pook", "Balintawak", "Banaybanay", "Bolbok",
+     "Bugtong na Pulo", "Bulacnin", "Bulaklakan", "Calamias", "Cumba", "Dagatan", "Duhatan", "Halang", "Inosloban", "Kayumanggi", "Latag",
+      "Lodlod", "Lumbang", "Mabini", "Malagonlong", "Malitlit", "Marauoy", "Mataas na Lupa", "Munting Pulo", "Pagolingin Bata", 
+      "Pagolingin East", "Pagolingin West", "Pangao", "Pinagkawitan", "Pinagtongulan", "Plaridel", "Poblacion Barangay 1", 
+      "Poblacion Barangay 2", "Poblacion Barangay 3", "Poblacion Barangay 4", "Poblacion Barangay 5", "Poblacion Barangay 6", 
+      "Poblacion Barangay 7", "Poblacion Barangay 8", "Poblacion Barangay 9", "Poblacion Barangay 9-A", "Poblacion Barangay 10", 
+      "Poblacion Barangay 11", "Poblacion Barangay 12", "Pusil", "Quezon", "Rizal", "Sabang", "Sampaguita", "San Benito", "San Carlos", 
+      "San Celestino", "San Francisco", "San Guillermo", "San Jose", "San Lucas", "San Salvador", "San Sebastian", "Santo Niño", 
+      "Santo Toribio", "Sapac", "Sico", "Talisay", "Tambo", "Tangob", "Tanguay", "Tibig", "Tipacan"
+];
+$property_classes = ['Class 1 - Properties that are premium, well-located buildings with top amenities, high-income tenants, low vacancy rates, and minimal maintenance.',
+                    'Class 2 - Properties that are older, lower-income buildings with renovation potential, offering higher CAP rates and lower rents than Class 1.',
+                    'Class 3 - Properties are over 20 years old, in need of renovation, and offer the lowest rental rates, requiring improvements for steady cash flow.'
+];
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clavem</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="Styles\style.css">
+    <link rel="stylesheet" href="Styles/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <nav>
@@ -84,61 +110,74 @@ $property_classes = ['1', '2', '3'];
             <li><a href="index.php">Home</a></li>
             <li><a href="About.php">About Us</a></li>
             <li><a href="Contact.php">Contact Us</a></li>
-
+            <li><a href="javascript:void(0);" onclick="confirmLogout()">Logout</a></li>
         </ul>
     </nav>
 
     <!-- Main content -->
     <div class="container mt-5">
-        <br><br>
+        <br>
         <h1>Manage Properties</h1>
         <?php if ($message): ?>
             <div class="alert alert-info"><?= htmlspecialchars($message) ?></div>
         <?php endif; ?>
 
-        <!-- Add Property Form -->
-        <h2>Post a New Property</h2>
-        <form method="POST" action="?action=create">
+        <!-- Add/Edit Property Form -->
+        <h2><?= $editProperty ? "Edit Property" : "Post a New Property" ?></h2>
+        <form method="POST" action="?action=<?= $editProperty ? 'update' : 'create' ?>">
+            <?php if ($editProperty): ?>
+                <input type="hidden" name="id" value="<?= htmlspecialchars($editProperty['property_id']) ?>">
+            <?php endif; ?>
             <div class="form-group">
                 <label>Category</label>
-                <select name="categories" class="form-control" required>
-                    <option value="">Select Category</option>
+                <select name="categories" class="form-control" <?= $editProperty ? 'disabled' : '' ?> required>
+                    <option value="">-Select Category-</option>
                     <?php foreach ($categories as $category): ?>
-                        <option value="<?= htmlspecialchars($category) ?>"><?= htmlspecialchars($category) ?></option>
+                        <option value="<?= htmlspecialchars($category) ?>" <?= $editProperty && $editProperty['categories'] == $category ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($category) ?>
+                        </option>
                     <?php endforeach; ?>
                 </select>
             </div>
             <div class="form-group">
                 <label>Location</label>
-                <select name="locations" class="form-control" required>
-                    <option value="">Select Location</option>
+                <select name="locations" class="form-control" <?= $editProperty ? 'disabled' : '' ?> required>
+                    <option value="">-Select Location-</option>
                     <?php foreach ($locations as $location): ?>
-                        <option value="<?= htmlspecialchars($location) ?>"><?= htmlspecialchars($location) ?></option>
+                        <option value="<?= htmlspecialchars($location) ?>" <?= $editProperty && $editProperty['locations'] == $location ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($location) ?>
+                        </option>
                     <?php endforeach; ?>
                 </select>
             </div>
             <div class="form-group">
                 <label>Lot Area</label>
-                <input type="text" name="lot_areas" class="form-control" required>
+                <input type="text" name="lot_areas" class="form-control" placeholder="Enter Lot Area" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required >
+                
             </div>
             <div class="form-group">
                 <label>Floor Area</label>
-                <input type="text" name="floor_areas" class="form-control" required>
+                <input type="text" name="floor_areas" class="form-control" required placeholder="Enter Floor Area" value="<?= $editProperty ? htmlspecialchars($editProperty['floor_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required>
             </div>
             <div class="form-group">
                 <label>Price</label>
-                <input type="number" name="price" class="form-control" required>
+                <input type="number" name="price_ranges" class="form-control" required placeholder="Enter Price" value="<?= $editProperty ? htmlspecialchars($editProperty['price_ranges']) : '' ?>"  required>
             </div>
             <div class="form-group">
                 <label>Property Class</label>
                 <select name="property_classes" class="form-control" required>
-                    <option value="">Select Property Class</option>
+                    <option value="">-Select Property Class-</option>
                     <?php foreach ($property_classes as $property_class): ?>
-                        <option value="<?= htmlspecialchars($property_class) ?>"><?= htmlspecialchars($property_class) ?></option>
+                        <option value="<?= htmlspecialchars($property_class) ?>" <?= $editProperty && $editProperty['property_classes'] == $property_class ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($property_class) ?>
+                        </option>
                     <?php endforeach; ?>
                 </select>
             </div>
-            <button type="submit" class="btn btn-success" style="background-color:#cba560; outline-color:#cba560;">Post Property</button>
+            <button type="submit" class="btn btn-success"><?= $editProperty ? "Update Property" : "Post Property" ?></button>
+            <?php if ($editProperty): ?>
+                <a href="manage_properties.php" class="btn btn-secondary">Cancel</a>
+            <?php endif; ?>
         </form>
 
         <!-- List Properties -->
@@ -167,10 +206,7 @@ $property_classes = ['1', '2', '3'];
                         <td><?= number_format($property['price_ranges'], 2) ?></td>
                         <td><?= htmlspecialchars($property['property_classes']) ?></td>
                         <td>
-                            <!-- Edit button link -->
                             <a href="?action=edit&id=<?= $property['property_id'] ?>" class="btn btn-primary btn-sm">Edit</a>
-                            
-                            <!-- Delete button with SweetAlert2 confirmation -->
                             <a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $property['property_id'] ?>)">
                                 Delete
                             </a>
@@ -182,16 +218,6 @@ $property_classes = ['1', '2', '3'];
     </div>
 
     <script>
-        // Show SweetAlert2 message based on PHP message
-        <?php if (isset($showAlert) && $showAlert): ?>
-            Swal.fire({
-                title: "<?= $alertTitle ?>",
-                text: "<?= $alertText ?>",
-                icon: "<?= $alertIcon ?>"
-            });
-        <?php endif; ?>
-
-        // SweetAlert confirmation for deletion
         function confirmDelete(propertyId) {
             Swal.fire({
                 title: "Are you sure?",
@@ -203,17 +229,38 @@ $property_classes = ['1', '2', '3'];
                 confirmButtonText: "Yes, delete it!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Redirect to delete URL
                     window.location.href = "?action=delete&id=" + propertyId;
-                    // Show success message after deletion
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                    });
                 }
             });
         }
     </script>
+
+    <script>
+        function confirmLogout() {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Do you want to log out?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, log me out!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "logout.php";
+                }
+            });
+        }
+    </script>
+
+    <?php if (isset($showAlert) && $showAlert): ?>
+        <script>
+            Swal.fire({
+                title: "<?= $alertTitle ?>",
+                text: "<?= $alertText ?>",
+                icon: "<?= $alertIcon ?>"
+            });
+        </script>
+    <?php endif; ?>
 </body>
 </html>

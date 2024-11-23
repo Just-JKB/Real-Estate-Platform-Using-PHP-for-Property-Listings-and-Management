@@ -44,7 +44,7 @@
     }
 
     input[type="text"]:focus, input[type="password"]:focus {
-        border-color: #007bff;
+        border-color: #cba560;
         outline: none;
     }
 

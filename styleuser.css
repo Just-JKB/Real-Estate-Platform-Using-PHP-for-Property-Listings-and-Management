@@ -20,7 +20,7 @@ body {
 }
 
 header {
-    background-color: #004d99;
+    background-color: #cba560;
     color: #fff;
     text-align: center;
     padding: 20px 0;
@@ -41,7 +41,7 @@ main {
 }
 
 h2 {
-    color: #0056b3;
+    color: #333
 }
 
 h3 {
@@ -66,7 +66,7 @@ h3 {
 a.button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #28a745;
+    background-color: #cba560;
     color: white;
     font-weight: bold;
     text-decoration: none;
@@ -75,15 +75,15 @@ a.button {
 }
 
 a.button:hover {
-    background-color: #218838;
+    background-color: #c7b087;
 }
 
 a.button.logout {
-    background-color: #dc3545;
+    background-color: #cba560;
 }
 
 a.button.logout:hover {
-    background-color: #c82333;
+    background-color: #c7b087;
 }
 
 footer {

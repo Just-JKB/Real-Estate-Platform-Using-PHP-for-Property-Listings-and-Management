@@ -87,7 +87,10 @@ $locations = [
       "San Celestino", "San Francisco", "San Guillermo", "San Jose", "San Lucas", "San Salvador", "San Sebastian", "Santo Niño", 
       "Santo Toribio", "Sapac", "Sico", "Talisay", "Tambo", "Tangob", "Tanguay", "Tibig", "Tipacan"
 ];
-$property_classes = ['1', '2', '3'];
+$property_classes = ['Class 1 - Properties that are premium, well-located buildings with top amenities, high-income tenants, low vacancy rates, and minimal maintenance.',
+                    'Class 2 - Properties that are older, lower-income buildings with renovation potential, offering higher CAP rates and lower rents than Class 1.',
+                    'Class 3 - Properties are over 20 years old, in need of renovation, and offer the lowest rental rates, requiring improvements for steady cash flow.'
+];
 ?>
 
 <!DOCTYPE html>
@@ -107,7 +110,7 @@ $property_classes = ['1', '2', '3'];
             <li><a href="index.php">Home</a></li>
             <li><a href="About.php">About Us</a></li>
             <li><a href="Contact.php">Contact Us</a></li>
-            <li><a href="logout.php">Logout</a></li>
+            <li><a href="javascript:void(0);" onclick="confirmLogout()">Logout</a></li>
         </ul>
     </nav>
 
@@ -128,7 +131,7 @@ $property_classes = ['1', '2', '3'];
             <div class="form-group">
                 <label>Category</label>
                 <select name="categories" class="form-control" <?= $editProperty ? 'disabled' : '' ?> required>
-                    <option value="">Select Category</option>
+                    <option value="">-Select Category-</option>
                     <?php foreach ($categories as $category): ?>
                         <option value="<?= htmlspecialchars($category) ?>" <?= $editProperty && $editProperty['categories'] == $category ? 'selected' : '' ?>>
                             <?= htmlspecialchars($category) ?>
@@ -139,7 +142,7 @@ $property_classes = ['1', '2', '3'];
             <div class="form-group">
                 <label>Location</label>
                 <select name="locations" class="form-control" <?= $editProperty ? 'disabled' : '' ?> required>
-                    <option value="">Select Location</option>
+                    <option value="">-Select Location-</option>
                     <?php foreach ($locations as $location): ?>
                         <option value="<?= htmlspecialchars($location) ?>" <?= $editProperty && $editProperty['locations'] == $location ? 'selected' : '' ?>>
                             <?= htmlspecialchars($location) ?>
@@ -149,20 +152,21 @@ $property_classes = ['1', '2', '3'];
             </div>
             <div class="form-group">
                 <label>Lot Area</label>
-                <input type="text" name="lot_areas" class="form-control" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required>
+                <input type="text" name="lot_areas" class="form-control" placeholder="Enter Lot Area" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required >
+                
             </div>
             <div class="form-group">
                 <label>Floor Area</label>
-                <input type="text" name="floor_areas" class="form-control" value="<?= $editProperty ? htmlspecialchars($editProperty['floor_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required>
+                <input type="text" name="floor_areas" class="form-control" required placeholder="Enter Floor Area" value="<?= $editProperty ? htmlspecialchars($editProperty['floor_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required>
             </div>
             <div class="form-group">
                 <label>Price</label>
-                <input type="number" name="price_ranges" class="form-control" value="<?= $editProperty ? htmlspecialchars($editProperty['price_ranges']) : '' ?>"  required>
+                <input type="number" name="price_ranges" class="form-control" required placeholder="Enter Price" value="<?= $editProperty ? htmlspecialchars($editProperty['price_ranges']) : '' ?>"  required>
             </div>
             <div class="form-group">
                 <label>Property Class</label>
                 <select name="property_classes" class="form-control" required>
-                    <option value="">Select Property Class</option>
+                    <option value="">-Select Property Class-</option>
                     <?php foreach ($property_classes as $property_class): ?>
                         <option value="<?= htmlspecialchars($property_class) ?>" <?= $editProperty && $editProperty['property_classes'] == $property_class ? 'selected' : '' ?>>
                             <?= htmlspecialchars($property_class) ?>
@@ -226,6 +230,24 @@ $property_classes = ['1', '2', '3'];
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = "?action=delete&id=" + propertyId;
+                }
+            });
+        }
+    </script>
+
+    <script>
+        function confirmLogout() {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Do you want to log out?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, log me out!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "logout.php";
                 }
             });
         }

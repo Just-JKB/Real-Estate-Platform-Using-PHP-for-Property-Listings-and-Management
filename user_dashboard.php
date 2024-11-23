@@ -15,8 +15,8 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'user') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real Estate Management - User Dashboard</title>
-    <link rel="stylesheet" href="styleuser.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Styles/styleuser.css">
+    <link rel="stylesheet" href="Styles/style.css">
 </head>
 <body>
     <div class="container">

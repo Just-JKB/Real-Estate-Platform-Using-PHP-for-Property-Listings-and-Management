@@ -126,7 +126,7 @@ $property_classes = ['1', '2', '3'];
             <?php endif; ?>
             <div class="form-group">
                 <label>Category</label>
-                <select name="categories" class="form-control" required>
+                <select name="categories" class="form-control" <?= $editProperty ? 'disabled' : '' ?> required>
                     <option value="">Select Category</option>
                     <?php foreach ($categories as $category): ?>
                         <option value="<?= htmlspecialchars($category) ?>" <?= $editProperty && $editProperty['categories'] == $category ? 'selected' : '' ?>>
@@ -148,15 +148,15 @@ $property_classes = ['1', '2', '3'];
             </div>
             <div class="form-group">
                 <label>Lot Area</label>
-                <input type="text" name="lot_areas" class="form-control" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" required>
+                <input type="text" name="lot_areas" class="form-control" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required>
             </div>
             <div class="form-group">
                 <label>Floor Area</label>
-                <input type="text" name="floor_areas" class="form-control" value="<?= $editProperty ? htmlspecialchars($editProperty['floor_areas']) : '' ?>" required>
+                <input type="text" name="floor_areas" class="form-control" value="<?= $editProperty ? htmlspecialchars($editProperty['floor_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required>
             </div>
             <div class="form-group">
                 <label>Price</label>
-                <input type="number" name="price_ranges" class="form-control" value="<?= $editProperty ? htmlspecialchars($editProperty['price_ranges']) : '' ?>" required>
+                <input type="number" name="price_ranges" class="form-control" value="<?= $editProperty ? htmlspecialchars($editProperty['price_ranges']) : '' ?>"  required>
             </div>
             <div class="form-group">
                 <label>Property Class</label>

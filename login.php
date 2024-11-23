@@ -44,18 +44,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Clavem</title>
     <link rel="stylesheet" href="stylelogin.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylelogin.css">
 </head>
-<body>
+<body> 
 
 <nav>
-<div class="logo">Clavem</div>
+    <div class="logo">
+    <img src="clavem_logo.png" alt="Clavem Logo" height="50"> <!-- Add your logo image here -->
+    </div>
 </nav>
 
-<div class="login-container">
-    <div class="login-form">
+<div class="login-container">                                                                                                                                                                                                                                                                                                                       login-form">
         <h2>Real Estate Management Login</h2>
         <form method="POST">
             <label for="username">Username</label>

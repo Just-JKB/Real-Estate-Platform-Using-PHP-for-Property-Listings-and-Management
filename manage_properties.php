@@ -87,9 +87,9 @@ $locations = [
       "San Celestino", "San Francisco", "San Guillermo", "San Jose", "San Lucas", "San Salvador", "San Sebastian", "Santo Niño", 
       "Santo Toribio", "Sapac", "Sico", "Talisay", "Tambo", "Tangob", "Tanguay", "Tibig", "Tipacan"
 ];
-$property_classes = ['Class 1 - Properties that are premium, well-located buildings with top amenities, high-income tenants, low vacancy rates, and minimal maintenance.',
-                    'Class 2 - Properties that are older, lower-income buildings with renovation potential, offering higher CAP rates and lower rents than Class 1.',
-                    'Class 3 - Properties are over 20 years old, in need of renovation, and offer the lowest rental rates, requiring improvements for steady cash flow.'
+$property_classes = ['1',
+                    '2',
+                    '3'
 ];
 ?>
 
@@ -130,7 +130,7 @@ $property_classes = ['Class 1 - Properties that are premium, well-located buildi
             <?php endif; ?>
             <div class="form-group">
                 <label>Category</label>
-                <select name="categories" class="form-control" <?= $editProperty ? 'disabled' : '' ?> required>
+                <select name="categories" class="form-control" required>
                     <option value="">-Select Category-</option>
                     <?php foreach ($categories as $category): ?>
                         <option value="<?= htmlspecialchars($category) ?>" <?= $editProperty && $editProperty['categories'] == $category ? 'selected' : '' ?>>
@@ -141,7 +141,7 @@ $property_classes = ['Class 1 - Properties that are premium, well-located buildi
             </div>
             <div class="form-group">
                 <label>Location</label>
-                <select name="locations" class="form-control" <?= $editProperty ? 'disabled' : '' ?> required>
+                <select name="locations" class="form-control" required>
                     <option value="">-Select Location-</option>
                     <?php foreach ($locations as $location): ?>
                         <option value="<?= htmlspecialchars($location) ?>" <?= $editProperty && $editProperty['locations'] == $location ? 'selected' : '' ?>>
@@ -152,12 +152,12 @@ $property_classes = ['Class 1 - Properties that are premium, well-located buildi
             </div>
             <div class="form-group">
                 <label>Lot Area</label>
-                <input type="text" name="lot_areas" class="form-control" placeholder="Enter Lot Area" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required >
+                <input type="text" name="lot_areas" class="form-control" placeholder="Enter Lot Area" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" required >
                 
             </div>
             <div class="form-group">
                 <label>Floor Area</label>
-                <input type="text" name="floor_areas" class="form-control" required placeholder="Enter Floor Area" value="<?= $editProperty ? htmlspecialchars($editProperty['floor_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required>
+                <input type="text" name="floor_areas" class="form-control" required placeholder="Enter Floor Area" value="<?= $editProperty ? htmlspecialchars($editProperty['floor_areas']) : '' ?>" required>
             </div>
             <div class="form-group">
                 <label>Price</label>

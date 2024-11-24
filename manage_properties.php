@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($propertyCRUD->updateProperty($id, $data)) {
             $message = "Property updated successfully!";
             $showAlert = true;
-            $alertTitle = "Good job!";
+            $alertTitle = "Success!";
             $alertText = "Property updated successfully!";
             $alertIcon = "success";
         } else {
@@ -152,12 +152,11 @@ $property_classes = ['1',
             </div>
             <div class="form-group">
                 <label>Lot Area</label>
-                <input type="text" name="lot_areas" class="form-control" placeholder="Enter Lot Area" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" required >
-                
+                <input type="number" name="lot_areas" class="form-control" placeholder="Enter Lot Area" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" required oninput="this.value = this.value.replace(/[^0-9.]/g, '')">
             </div>
             <div class="form-group">
                 <label>Floor Area</label>
-                <input type="text" name="floor_areas" class="form-control" required placeholder="Enter Floor Area" value="<?= $editProperty ? htmlspecialchars($editProperty['floor_areas']) : '' ?>" required>
+                <input type="number" name="floor_areas" class="form-control" required placeholder="Enter Floor Area" value="<?= $editProperty ? htmlspecialchars($editProperty['floor_areas']) : '' ?>" oninput="this.value = this.value.replace(/[^0-9.]/g, '')" required>
             </div>
             <div class="form-group">
                 <label>Price</label>

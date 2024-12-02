@@ -24,6 +24,7 @@ echo <<<HTML
 </nav>
 
 <div class="container mt-5">
+
 HTML;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

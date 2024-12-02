@@ -81,9 +81,14 @@
     }
     .logo{
         position: absolute; /* Positioning the element absolutely */
-        top: 20px; /* Add space from the top */
-        left: 20px; /* Add space from the left */
+        top: 1px; /* Add space from the top */
+        left: 1px; /* Add space from the left */
     }
     .banner{
-        margin-left: 10px; /* Space between the image and the text */
+        margin-left: 5px;
+         /* Space between the image and the text */
+    }
+    .img-size{
+        width: 200px; /* Default size */
+        height: auto;
     }

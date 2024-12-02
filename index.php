@@ -61,24 +61,24 @@ $property_classes = $propertyData->getPropertyClasses();
                 </select>
             </div>
 
-            <!-- Lot Area -->
-            <div class="form-group">
+             <!-- Lot Area -->
+             <div class="form-group">
                 <label for="lot_area">Lot Area (sqm.)</label>
                 <select id="lot_area" name="lot_area" class="form-control">
                     <option value="" selected>Select Lot Area</option>
-                    <?php foreach ($lot_areas as $key => $label): ?>
-                        <option value="<?= htmlspecialchars($key) ?>"><?= htmlspecialchars($label) ?></option>
+                    <?php foreach ($lot_areas as $key => $range): ?>
+                        <option value="<?= $key ?>"><?= $key ?> (<?= $range[0] ?> sqm to <?= $range[1] ?> sqm)</option>
                     <?php endforeach; ?>
                 </select>
             </div>
-
-            <!-- Floor Area -->
-            <div class="form-group">
+            
+             <!-- Floor Area -->
+             <div class="form-group">
                 <label for="floor_area">Floor Area (sqm.)</label>
                 <select id="floor_area" name="floor_area" class="form-control">
                     <option value="" selected>Select Floor Area</option>
-                    <?php foreach ($floor_areas as $key => $label): ?>
-                        <option value="<?= htmlspecialchars($key) ?>"><?= htmlspecialchars($label) ?></option>
+                    <?php foreach ($floor_areas as $key => $range): ?>
+                        <option value="<?= $key ?>"><?= $key ?> (<?= $range[0] ?> sqm to <?= $range[1] ?> sqm)</option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -88,8 +88,8 @@ $property_classes = $propertyData->getPropertyClasses();
                 <label for="price_range">Price Range</label>
                 <select id="price_range" name="price_range" class="form-control">
                     <option value="" selected>Select Price Range</option>
-                    <?php foreach ($price_ranges as $key => $label): ?>
-                        <option value="<?= htmlspecialchars($key) ?>"><?= htmlspecialchars($label) ?></option>
+                    <?php foreach ($price_ranges as $key => $range): ?>
+                        <option value="<?= $key ?>">PHP <?= number_format($range[0]) ?> to PHP <?= number_format($range[1]) ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>

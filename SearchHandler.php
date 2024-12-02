@@ -42,13 +42,27 @@ class SearchHandler
     }
 
     if ($data['lot_areas']) {
-        $query .= " AND lot_areas = :lot_areas";
-        $params[':lot_areas'] = $data['lot_areas'];
+        [$minLot, $maxLot] = explode('-', $data['lot_areas']);
+        if ($maxLot === '1000000') {
+            $query .= " AND lot_areas >= :min_lot";
+            $params[':min_lot'] = $minLot;
+        } else {
+            $query .= " AND lot_areas BETWEEN :min_lot AND :max_lot";
+            $params[':min_lot'] = $minLot;
+            $params[':max_lot'] = $maxLot;
+        }
     }
 
     if ($data['floor_areas']) {
-        $query .= " AND floor_areas = :floor_areas";
-        $params[':floor_areas'] = $data['floor_areas'];
+        [$minFloor, $maxFloor] = explode('-', $data['floor_areas']);
+        if ($maxFloor === '1000000') {
+            $query .= " AND floor_areas >= :min_floor";
+            $params[':min_floor'] = $minFloor;
+        } else {
+            $query .= " AND floor_areas BETWEEN :min_floor AND :max_floor";
+            $params[':min_floor'] = $minFloor;
+            $params[':max_floor'] = $maxFloor;
+        }
     }
 
     if ($data['price_ranges']) {
@@ -127,12 +141,12 @@ class SearchHandler
 
     public function getLotAreas()
     {
-        return ['0-250', '251-500', '501-750', '751-1000', '1001-1500', '1501-2500', '2501-1000000'];
+        return ['40-250', '251-500', '501-750', '751-1000', '1001-1500', '1501-2500', '2501-1000000'];
     }
 
     public function getFloorAreas()
     {
-        return $this->getLotAreas(); // Reuse same options
+        return ['0-250', '251-500', '501-750', '751-1000', '1001-1500', '1501-2500', '2501-1000000'];
     }
 
     public function getPriceRanges()

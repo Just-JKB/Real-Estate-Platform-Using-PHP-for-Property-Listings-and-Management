@@ -158,7 +158,7 @@ $property_classes = ['Green',
             </div>
             <div class="form-group">
                 <label>Lot Area</label>
-                <input type="number" min="20" name="lot_areas" class="form-control" placeholder="Enter Lot Area" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" required >
+                <input type="number" min="40" name="lot_areas" class="form-control" placeholder="Enter Lot Area" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" required >
                 
             </div>
             <div class="form-group">

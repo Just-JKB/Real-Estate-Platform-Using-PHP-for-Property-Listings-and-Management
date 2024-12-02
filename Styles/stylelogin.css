@@ -92,3 +92,12 @@
         width: 200px; /* Default size */
         height: auto;
     }
+    .footer-bar {
+        background-color:#cba564;
+        ; 
+        color: rgb(0, 0, 0); 
+        text-align: center; 
+        padding: 10px 0; 
+        position: fixed; 
+        bottom: 0;
+        width: 100%;}

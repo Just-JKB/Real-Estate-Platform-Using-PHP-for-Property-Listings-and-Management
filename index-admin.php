@@ -72,5 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
     </div>
 </div>
+<footer class="footer-bar">
+	&copy; 2024 Clavem. All rights reserved.
+</footer>
 </body>
 </html>

@@ -54,10 +54,10 @@ class SearchHandler
     if ($data['price_ranges']) {
         [$minPrice, $maxPrice] = explode('-', $data['price_ranges']);
         if ($maxPrice === 'above') {
-            $query .= " AND price >= :min_price";
+            $query .= " AND price_ranges >= :min_price";
             $params[':min_price'] = $minPrice;
         } else {
-            $query .= " AND price BETWEEN :min_price AND :max_price";
+            $query .= " AND price_ranges BETWEEN :min_price AND :max_price";
             $params[':min_price'] = $minPrice;
             $params[':max_price'] = $maxPrice;
         }
@@ -71,10 +71,10 @@ class SearchHandler
     if ($data['sort_by']) {
         switch ($data['sort_by']) {
             case 'price_asc':
-                $query .= " ORDER BY price ASC";
+                $query .= " ORDER BY price_ranges ASC";
                 break;
             case 'price_desc':
-                $query .= " ORDER BY price DESC";
+                $query .= " ORDER BY price_ranges DESC";
                 break;
             case 'lot_area_asc':
                 $query .= " ORDER BY lot_areas ASC";
@@ -142,6 +142,6 @@ class SearchHandler
 
     public function getPropertyClasses()
     {
-        return ['1', '2', '3'];
+        return ['Green', 'Yellow', 'Red'];
     }
 }

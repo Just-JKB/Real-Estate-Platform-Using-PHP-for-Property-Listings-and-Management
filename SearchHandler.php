@@ -54,10 +54,10 @@ class SearchHandler
     if ($data['price_ranges']) {
         [$minPrice, $maxPrice] = explode('-', $data['price_ranges']);
         if ($maxPrice === 'above') {
-            $query .= " AND price >= :min_price";
+            $query .= " AND price_ranges >= :min_price";
             $params[':min_price'] = $minPrice;
         } else {
-            $query .= " AND price BETWEEN :min_price AND :max_price";
+            $query .= " AND price_ranges BETWEEN :min_price AND :max_price";
             $params[':min_price'] = $minPrice;
             $params[':max_price'] = $maxPrice;
         }
@@ -71,10 +71,10 @@ class SearchHandler
     if ($data['sort_by']) {
         switch ($data['sort_by']) {
             case 'price_asc':
-                $query .= " ORDER BY price ASC";
+                $query .= " ORDER BY price_ranges ASC";
                 break;
             case 'price_desc':
-                $query .= " ORDER BY price DESC";
+                $query .= " ORDER BY price_ranges DESC";
                 break;
             case 'lot_area_asc':
                 $query .= " ORDER BY lot_areas ASC";
@@ -122,17 +122,7 @@ class SearchHandler
 
     public function getLocations()
     {
-        return [
-            "Adya", "Anilao", "Anilao-Labac", "Antipolo del Norte", "Antipolo del Sur", "Bagong Pook", "Balintawak", "Banaybanay", "Bolbok",
-     "Bugtong na Pulo", "Bulacnin", "Bulaklakan", "Calamias", "Cumba", "Dagatan", "Duhatan", "Halang", "Inosloban", "Kayumanggi", "Latag",
-      "Lodlod", "Lumbang", "Mabini", "Malagonlong", "Malitlit", "Marauoy", "Mataas na Lupa", "Munting Pulo", "Pagolingin Bata", 
-      "Pagolingin East", "Pagolingin West", "Pangao", "Pinagkawitan", "Pinagtongulan", "Plaridel", "Poblacion Barangay 1", 
-      "Poblacion Barangay 2", "Poblacion Barangay 3", "Poblacion Barangay 4", "Poblacion Barangay 5", "Poblacion Barangay 6", 
-      "Poblacion Barangay 7", "Poblacion Barangay 8", "Poblacion Barangay 9", "Poblacion Barangay 9-A", "Poblacion Barangay 10", 
-      "Poblacion Barangay 11", "Poblacion Barangay 12", "Pusil", "Quezon", "Rizal", "Sabang", "Sampaguita", "San Benito", "San Carlos", 
-      "San Celestino", "San Francisco", "San Guillermo", "San Jose", "San Lucas", "San Salvador", "San Sebastian", "Santo Niño", 
-      "Santo Toribio", "Sapac", "Sico", "Talisay", "Tambo", "Tangob", "Tanguay", "Tibig", "Tipacan"
-    ];
+        return ['Adya', 'Anilao', 'Antipolo del Norte', 'Antipolo del Sur']; // Add all locations
     }
 
     public function getLotAreas()
@@ -152,6 +142,6 @@ class SearchHandler
 
     public function getPropertyClasses()
     {
-        return ['Green', 'Red', 'Yellow'];
+        return ['Green', 'Yellow', 'Red'];
     }
 }

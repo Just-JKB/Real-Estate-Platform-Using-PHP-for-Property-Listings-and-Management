@@ -9,19 +9,28 @@ $message = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($action === 'create') {
         $data = $_POST;
-        if ($propertyCRUD->createProperty($data)) {
-            $message = "Property created successfully!";
+        if ($propertyCRUD->checkDuplicateProperty($data)) {
+            $message = "This property already exists.";
             $showAlert = true;
-            $alertTitle = "Success!";
-            $alertText = "Property added successfully!";
-            $alertIcon = "success";
+            $alertTitle = "Duplicate Entry!";
+            $alertText = "Property Already exists!";
+            $alertIcon = "warning";
         } else {
-            $message = "Failed to create property.";
-            $showAlert = true;
-            $alertTitle = "Try Again!";
-            $alertText = "Failed to create property.";
-            $alertIcon = "error";
+            // Proceed with creation if no duplicate exists
+            if ($propertyCRUD->createProperty($data)) {
+                $message = "Property created successfully!";
+                $showAlert = true;
+                $alertTitle = "Success!";
+                $alertText = "Property added successfully!";
+                $alertIcon = "success";
+            } else {
+                $message = "Failed to create property.";
+                $showAlert = true;
+                $alertTitle = "Try Again!";
+                $alertText = "Failed to create property.";
+                $alertIcon = "error";
         }
+    }
     } elseif ($action === 'update') {
         $id = $_POST['id'];
         $data = $_POST;
@@ -149,7 +158,7 @@ $property_classes = ['Green',
             </div>
             <div class="form-group">
                 <label>Lot Area</label>
-                <input type="number" min="0" name="lot_areas" class="form-control" placeholder="Enter Lot Area" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" required >
+                <input type="number" min="20" name="lot_areas" class="form-control" placeholder="Enter Lot Area" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" required >
                 
             </div>
             <div class="form-group">

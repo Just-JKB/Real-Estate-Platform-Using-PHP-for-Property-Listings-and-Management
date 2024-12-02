@@ -42,9 +42,9 @@ private $price_ranges = [
 ];
 
 private $property_classes = [
-    "1" => "Green Tag",
-    "2" => "Yellow Tag",
-    "3" => "Red Tag"
+    'Green' => 'Green Tag',
+    'Yellow' => 'Yellow Tag',
+    'Red' => 'Red Tag'
 ];
 
 public function __construct() //make the fields lot area == floor area

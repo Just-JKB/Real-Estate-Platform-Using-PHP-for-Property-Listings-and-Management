@@ -18,8 +18,8 @@ echo <<<HTML
     <div class="logo">Clavem</div>
     <ul class="navbar">
         <li><a href="index.php">Home</a></li>
-        <li><a href="About.php">About Us</a></li>
-        <li><a href="Contact.php">Contact Us</a></li>
+        <li><a href="About.html">About Us</a></li>
+        <li><a href="Contact.html">Contact Us</a></li>
     </ul>
 </nav>
 

@@ -15,12 +15,12 @@ class PropertyCRUD {
                   VALUES (:categories, :locations, :lot_areas, :floor_areas, :price_ranges, :property_classes)";
         $stmt = $this->pdo->prepare($query);
         return $stmt->execute([
-            ':categories' => $data['categories'],
-            ':locations' => $data['locations'],
-            ':lot_areas' => $data['lot_areas'],
-            ':floor_areas' => $data['floor_areas'],
-            ':price_ranges' => $data['price_ranges'],
-            ':property_classes' => $data['property_classes'],
+            ':categories' => $data['categories'] ?? '',
+            ':locations' => $data['locations'] ?? '',
+            ':lot_areas' => $data['lot_areas'] ?? '',
+            ':floor_areas' => $data['floor_areas'] ?? '',
+            ':price_ranges' => $data['price_ranges'] ?? '',
+            ':property_classes' => $data['property_classes'] ?? '',
         ]);
     }
 
@@ -48,12 +48,12 @@ class PropertyCRUD {
         $stmt = $this->pdo->prepare($query);
         return $stmt->execute([
             ':property_id' => $property_id,
-            ':categories' => $data['categories'],
-            ':locations' => $data['locations'],
-            ':lot_areas' => $data['lot_areas'],
-            ':floor_areas' => $data['floor_areas'],
-            ':price_ranges' => $data['price_ranges'],
-            ':property_classes' => $data['property_classes'],
+            ':categories' => $data['categories'] ?? '',
+            ':locations' => $data['locations'] ?? '',
+            ':lot_areas' => $data['lot_areas'] ?? '',
+            ':floor_areas' => $data['floor_areas'] ?? '',
+            ':price_ranges' => $data['price_ranges'] ?? '',
+            ':property_classes' => $data['property_classes'] ?? '',
         ]);
     }
 

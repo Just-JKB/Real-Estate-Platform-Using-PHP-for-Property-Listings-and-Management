@@ -82,7 +82,7 @@
     .logo{
         position: absolute; /* Positioning the element absolutely */
         top: 1px; /* Add space from the top */
-        left: 1px; /* Add space from the left */
+        left: 725px; /* Add space from the left */
     }
     .banner{
         margin-left: 5px;

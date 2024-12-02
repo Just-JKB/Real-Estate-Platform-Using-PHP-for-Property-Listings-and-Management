@@ -42,13 +42,17 @@ class SearchHandler
     }
 
     if ($data['lot_areas']) {
-        $query .= " AND lot_areas = :lot_areas";
-        $params[':lot_areas'] = $data['lot_areas'];
+        list($lot_min, $lot_max) = explode('-', $data['lot_areas']);
+        $query .= " AND lot_areas BETWEEN :lot_min AND :lot_max";
+        $params[':lot_min'] = $lot_min;
+        $params[':lot_max'] = $lot_max;
     }
-
+    
     if ($data['floor_areas']) {
-        $query .= " AND floor_areas = :floor_areas";
-        $params[':floor_areas'] = $data['floor_areas'];
+        list($floor_min, $floor_max) = explode('-', $data['floor_areas']);
+        $query .= " AND floor_areas BETWEEN :floor_min AND :floor_max";
+        $params[':floor_min'] = $floor_min;
+        $params[':floor_max'] = $floor_max;
     }
 
     if ($data['price_ranges']) {

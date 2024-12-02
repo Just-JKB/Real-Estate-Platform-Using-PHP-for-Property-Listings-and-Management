@@ -63,5 +63,26 @@ class PropertyCRUD {
         $stmt = $this->pdo->prepare($query);
         return $stmt->execute([':property_id' => $property_id]);
     }
+    //Check for duplicates
+    public function checkDuplicateProperty($data) {
+        $query = "SELECT COUNT(*) as count FROM property WHERE 
+                  categories = :categories AND 
+                  locations = :locations AND 
+                  lot_areas = :lot_areas AND 
+                  floor_areas = :floor_areas AND 
+                  price_ranges = :price_ranges";
+    
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindParam(':categories', $data['categories']);
+        $stmt->bindParam(':locations', $data['locations']);
+        $stmt->bindParam(':lot_areas', $data['lot_areas']);
+        $stmt->bindParam(':floor_areas', $data['floor_areas']);
+        $stmt->bindParam(':price_ranges', $data['price_ranges']);
+        $stmt->execute();
+    
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'] > 0;
+    }
+
 }
 ?>

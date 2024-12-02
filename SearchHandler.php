@@ -57,7 +57,7 @@ class SearchHandler
             $query .= " AND price_ranges >= :min_price";
             $params[':min_price'] = $minPrice;
         } else {
-            $query .= " AND price BETWEEN :min_price AND :max_price";
+            $query .= " AND price_ranges BETWEEN :min_price AND :max_price";
             $params[':min_price'] = $minPrice;
             $params[':max_price'] = $maxPrice;
         }

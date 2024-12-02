@@ -51,8 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <nav>
     <div class="logo">
-    <div class="Banner">Clavem</div>
-    <img src="logo\clavem_logo.png" alt="Clavem" height="50"> <!-- Add your logo image here -->
+    <img src="logo\clavem-logo.png.png" alt="Clavem" height="50" class="img-size"> <!-- Add your logo image here -->
     </div>
 </nav>
 

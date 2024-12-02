@@ -108,8 +108,8 @@ $property_classes = ['Class 1 - Properties that are premium, well-located buildi
         <div class="logo">Clavem</div>
         <ul class="navbar">
             <li><a href="index.php">Home</a></li>
-            <li><a href="About.php">About Us</a></li>
-            <li><a href="Contact.php">Contact Us</a></li>
+            <li><a href="About.html">About Us</a></li>
+            <li><a href="Contact.html">Contact Us</a></li>
             <li><a href="javascript:void(0);" onclick="confirmLogout()">Logout</a></li>
         </ul>
     </nav>

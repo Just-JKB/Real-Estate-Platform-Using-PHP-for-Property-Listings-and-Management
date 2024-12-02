@@ -109,5 +109,9 @@ $property_classes = $propertyData->getPropertyClasses();
             <button style="background-color: #cba560; border-color:#cba560" type="submit" class="btn btn-primary">Search</button>
         </form>
     </div>
+
+    <footer class="footer-bar">
+	&copy; 2024 Clavem. All rights reserved.
+</footer>
 </body>
 </html>

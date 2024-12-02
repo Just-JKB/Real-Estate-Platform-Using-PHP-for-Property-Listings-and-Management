@@ -49,9 +49,9 @@ nav{
 
 }
 .footer-bar {
-    background-color:#cba560;
+    background-color:#ffffff;
     ; 
-    color: white; 
+    color: rgb(0, 0, 0); 
     text-align: center; 
     padding: 10px 0; 
     position: fixed; 
@@ -59,9 +59,9 @@ nav{
     width: 100%;
 }
 .long-footer-bar {
-    background-color:#cba560;
+    background-color:#ffffff;
     ; 
-    color: white; 
+    color: rgb(0, 0, 0); 
     text-align: center; 
     padding: 10px 0; 
     bottom: 0;

@@ -87,9 +87,9 @@ $locations = [
       "San Celestino", "San Francisco", "San Guillermo", "San Jose", "San Lucas", "San Salvador", "San Sebastian", "Santo Niño", 
       "Santo Toribio", "Sapac", "Sico", "Talisay", "Tambo", "Tangob", "Tanguay", "Tibig", "Tipacan"
 ];
-$property_classes = ['Class 1 - Properties that are premium, well-located buildings with top amenities, high-income tenants, low vacancy rates, and minimal maintenance.',
-                    'Class 2 - Properties that are older, lower-income buildings with renovation potential, offering higher CAP rates and lower rents than Class 1.',
-                    'Class 3 - Properties are over 20 years old, in need of renovation, and offer the lowest rental rates, requiring improvements for steady cash flow.'
+$property_classes = ['Green - Properties that are premium, well-located buildings with top amenities, high-income tenants, low vacancy rates, and minimal maintenance.',
+                    'Yellow - Properties that are older, lower-income buildings with renovation potential, offering higher CAP rates and lower rents than Class 1.',
+                    'Red - Properties are over 20 years old, in need of renovation, and offer the lowest rental rates, requiring improvements for steady cash flow.'
 ];
 ?>
 
@@ -107,9 +107,6 @@ $property_classes = ['Class 1 - Properties that are premium, well-located buildi
     <nav>
         <div class="logo">Clavem</div>
         <ul class="navbar">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="About.html">About Us</a></li>
-            <li><a href="Contact.html">Contact Us</a></li>
             <li><a href="javascript:void(0);" onclick="confirmLogout()">Logout</a></li>
         </ul>
     </nav>

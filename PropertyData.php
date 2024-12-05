@@ -20,7 +20,7 @@ private $locations = [
 
 // Lot Areas
 private $lot_areas = [
-    "0-250" => [1, 250],
+    "40-250" => [40, 250],
     "251-500" => [251, 500],
     "501-750" => [501, 750],
     "751-1000" => [751, 1000],
@@ -32,6 +32,13 @@ private $lot_areas = [
 // Floor Areas
 private $floor_areas = [
     "0-250" => [1, 250],
+    "251-500" => [251, 500],
+    "501-750" => [501, 750],
+    "751-1000" => [751, 1000],
+    "1001-1500" => [1001, 1500],
+    "1501-2500" => [1501, 2500],
+    "2501-1000000" => [2501, 1000000]
+    "0-250" => [0, 250],
     "251-500" => [251, 500],
     "501-750" => [501, 750],
     "751-1000" => [751, 1000],
@@ -57,12 +64,6 @@ private $property_classes = [
     'Yellow' => 'Yellow Tag',
     'Red' => 'Red Tag'
 ];
-
-public function __construct() //make the fields lot area == floor area
-{
-    
-    $this->floor_areas = $this->lot_areas;
-}
 
 public function getCategories()
     {

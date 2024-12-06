@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         Swal.fire({
             title: 'Property Details ', // Display property_id in the title
             html: `
-                <strong>ID:</strong> ${property_id} <br>
+                <strong>Property ID:</strong> ${property_id} <br>
                 <strong>Category:</strong> ${category} <br>
                 <strong>Location:</strong> ${location} <br>
                 <strong>Lot Area:</strong> ${lotArea} sqm <br>

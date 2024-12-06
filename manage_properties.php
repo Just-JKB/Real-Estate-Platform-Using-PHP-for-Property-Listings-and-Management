@@ -261,27 +261,6 @@ if ($action === 'edit' && isset($_GET['id'])) {
             </tbody>
         </table>
     </div>
-=======
-                    <td><?= htmlspecialchars($property['property_id']) ?></td>
-                    <td><?= htmlspecialchars($property['categories']) ?></td>
-                    <td><?= htmlspecialchars($property['locations']) ?></td>
-                    <td><?= htmlspecialchars($property['lot_areas']) ?></td>
-                    <td><?= htmlspecialchars($property['floor_areas']) ?></td>
-                    <td><?= number_format($property['price_ranges'], 2) ?></td>
-                    <td><?= htmlspecialchars($property['property_classes']) ?></td>
-                    <td><?= htmlspecialchars($property['descr']) ?></td> <!-- Corrected description column -->
-                    <td>
-                        <a href="?action=edit&id=<?= $property['property_id'] ?>" class="btn btn-primary btn-sm">Edit</a>
-                        <a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $property['property_id'] ?>)">
-                            Delete
-                        </a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
->>>>>>> e7c88a4d2a04542ae464b6c9d7a286d7b436e68d
 
     <script>
         function confirmDelete(propertyId) {

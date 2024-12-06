@@ -90,7 +90,7 @@
          /* Space between the image and the text */
     }
     .img-size{
-        width: 200px; /* Default size */
+        width: 100px; /* Default size */
         height: auto;
     }
     .footer-bar {

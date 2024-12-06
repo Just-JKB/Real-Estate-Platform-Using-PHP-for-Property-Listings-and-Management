@@ -1,9 +1,9 @@
 <?php
 class PropertyData{
 
-private $categories = [
+public $categories = [
     "Apartment", "Building", "Commercial Space", "Condominium", "House & Lot",
-    "Lot w/ Unfinished Structure", "Lot with Structure", "Others", "Townhouse", "Vacant Lot", "Warehouse"
+    "Lot w/ Unfinished Structure", "Lot with Structure", "Townhouse", "Vacant Lot", "Warehouse"
 ];
 
 private $locations = [
@@ -53,9 +53,9 @@ private $price_ranges = [
 ];
 
 private $property_classes = [
-    'Green' => 'Green Tag',
-    'Yellow' => 'Yellow Tag',
-    'Red' => 'Red Tag'
+    'Green Tag' => 'Green',
+    'Yellow Tag' => 'Yellow',
+    'Red Tag' => 'Red'
 ];
 
 public function getCategories()

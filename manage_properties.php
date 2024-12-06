@@ -221,7 +221,6 @@ if ($action === 'edit' && isset($_GET['id'])) {
             </thead>
             <tbody>
             <?php foreach ($properties as $property): ?>
-                <?php foreach ($properties as $property): ?>
     <tr>
         <td><?= htmlspecialchars($property['property_id']) ?></td>
         <td><?= htmlspecialchars($property['categories']) ?></td>
@@ -238,9 +237,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
             </a>
         </td>
     </tr>
-<?php endforeach; ?>
-            <?php endforeach; ?>
-                <?php endforeach; ?>
+<?php endforeach; ?>    
     <script>
         function confirmDelete(propertyId) {
             Swal.fire({

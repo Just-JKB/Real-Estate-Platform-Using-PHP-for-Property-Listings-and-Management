@@ -1,11 +1,11 @@
 <?php
 
-require_once 'PropertyData.php';
+require_once 'PropertyData.php'; //calling property data using require once so that if it fails it shows an error
 
 
-$propertyData = new PropertyData();
+$propertyData = new PropertyData(); //object instantiation to get the PropertyData class and its arrays
 
-$categories = $propertyData->getCategories();
+$categories = $propertyData->getCategories();//method calls
 $locations = $propertyData->getLocations();
 $lot_areas = $propertyData->getLotAreas();
 $floor_areas = $propertyData->getFloorAreas();
@@ -14,7 +14,7 @@ $property_classes = $propertyData->getPropertyClasses();
 ?>
 
 
-<!DOCTYPE html>
+<!DOCTYPE html>  <!-- Start of html file inside php file -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -37,15 +37,16 @@ $property_classes = $propertyData->getPropertyClasses();
         <br>
         <br>
         <h3>Find Properties for Sale</h3>
-        <form method="POST" action="search.php">
-            
-            <!-- Category -->
+        <form method="POST" action="search.php"> <!-- uses form for user interaction POST for security and the action for where to go    -->
+            <!-- Dropdown for all variables -->
+
+            <!-- Category -->    
             <div class="form-group">
                 <label for="category">Category</label>
                 <select id="category" name="category" class="form-control">
                     <option value="" selected>Select Category</option>
-                    <?php foreach ($categories as $category): ?>
-                        <option value="<?= htmlspecialchars($category) ?>"><?= htmlspecialchars($category) ?></option>
+                    <?php foreach ($categories as $category): ?> <!-- calls all variables of the array -->
+                        <option value="<?= htmlspecialchars($category) ?>"><?= htmlspecialchars($category) ?></option><!-- creates the dropdown -->
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -106,7 +107,7 @@ $property_classes = $propertyData->getPropertyClasses();
             </div>
 
             <!-- Submit Button -->
-            <button style="background-color: #cba560; border-color:#cba560" type="submit" class="btn btn-primary">Search</button>
+            <button style="background-color: #cba560; border-color:#cba560"class="btn btn-primary" type="submit" >Search</button>
         </form>
     </div>
 

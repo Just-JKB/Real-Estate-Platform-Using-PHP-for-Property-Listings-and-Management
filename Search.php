@@ -62,7 +62,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $floorArea = htmlspecialchars($property['floor_areas']);
             $price = number_format($property['price_ranges'], 2);
             $classification = htmlspecialchars($property['property_classes']);
-            $description = htmlspecialchars($property['descr']); // Description
+            $description = nl2br(htmlspecialchars($property['descr'])); // Preserve newlines and escape special characters
+            $descriptionForJS = json_encode($description); // Safely encode the description for JavaScript
+            
+
     
             // Generate the card for each property
             echo "<div class='card mb-3'>";
@@ -76,7 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
     
             // More Info Button
-            echo "<button type='button' class='btn btn-info' onclick='showDescription(\"{$property_id}\", \"{$category}\", \"{$location}\", \"{$lotArea}\", \"{$floorArea}\", \"{$price}\", \"{$classification}\", \"{$description}\")'>More Info</button>";
+            echo "<button type='button' class='btn btn-info' onclick='showDescription(\"{$property_id}\", \"{$category}\", \"{$location}\", \"{$lotArea}\", \"{$floorArea}\", \"{$price}\", \"{$classification}\", {$descriptionForJS})'>More Info</button>";
+
             echo "</div>";
             echo "</div>";
         }
@@ -97,20 +101,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script>
     // Function to show SweetAlert with all property details, including property_id
     function showDescription(property_id, category, location, lotArea, floorArea, price, classification, description) {
-        Swal.fire({
-            title: 'Property Details ', // Display property_id in the title
-            html: `
-                <strong>ID:</strong> ${property_id} <br>
-                <strong>Category:</strong> ${category} <br>
-                <strong>Location:</strong> ${location} <br>
-                <strong>Lot Area:</strong> ${lotArea} sqm <br>
-                <strong>Floor Area:</strong> ${floorArea} sqm <br>
-                <strong>Price:</strong> PHP ${price} <br>
-                <strong>Classification:</strong> ${classification} <br>
-                <strong>Description:</strong> <br> ${description} <br>
-            `,
-        
-            confirmButtonText: 'Close'
-        });
-    }
+    Swal.fire({
+        title: 'Property Details', 
+        html: `
+            <strong>ID:</strong> ${property_id} <br>
+            <strong>Category:</strong> ${category} <br>
+            <strong>Location:</strong> ${location} <br>
+            <strong>Lot Area:</strong> ${lotArea} sqm <br>
+            <strong>Floor Area:</strong> ${floorArea} sqm <br>
+            <strong>Price:</strong> PHP ${price} <br>
+            <strong>Classification:</strong> ${classification} <br>
+            <strong>Description:</strong> <br> ${description} <br>
+        `,
+        confirmButtonText: 'Close'
+    });
+}
     </script>

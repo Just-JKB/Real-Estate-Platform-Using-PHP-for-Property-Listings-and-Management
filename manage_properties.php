@@ -105,7 +105,9 @@ if ($action === 'edit' && isset($_GET['id'])) {
 </head>
 <body>
     <nav>
-        <div class="logo">Clavem</div>
+    <a href="index.php">
+    <div class="logo">Clavem</div>
+</a>   
         <ul class="navbar">
             <li><a href="javascript:void(0);" onclick="confirmLogout()">Logout</a></li>
         </ul>
@@ -204,42 +206,43 @@ if ($action === 'edit' && isset($_GET['id'])) {
 
         <!-- List Properties -->
         <h2 class="mt-5">Properties</h2>
-        <div>
-        <table class="table table-bordered" style="width: 130%">
-            <thead>
+<div>
+    <table class="table table-bordered"style="width: 80%;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Location</th>
+                <th>Lot Area</th>
+                <th>Floor Area</th>
+                <th>Price</th>
+                <th>Classification</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($properties as $property): ?>
                 <tr>
-                    <th>ID</th>
-                    <th>Category</th>
-                    <th>Location</th>
-                    <th>Lot Area</th>
-                    <th>Floor Area</th>
-                    <th>Price</th>
-                    <th>Classification</th>
-                    <th>Actions</th>
+                    <td><?= htmlspecialchars($property['property_id']) ?></td>
+                    <td><?= htmlspecialchars($property['categories']) ?></td>
+                    <td><?= htmlspecialchars($property['locations']) ?></td>
+                    <td><?= htmlspecialchars($property['lot_areas']) ?></td>
+                    <td><?= htmlspecialchars($property['floor_areas']) ?></td>
+                    <td><?= number_format($property['price_ranges'], 2) ?></td>
+                    <td><?= htmlspecialchars($property['property_classes']) ?></td>
+                    <td><?= htmlspecialchars($property['descr']) ?></td> <!-- Corrected description column -->
+                    <td>
+                        <a href="?action=edit&id=<?= $property['property_id'] ?>" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $property['property_id'] ?>)">
+                            Delete
+                        </a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($properties as $property): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($property['property_id']) ?></td>
-                        <td><?= htmlspecialchars($property['categories']) ?></td>
-                        <td><?= htmlspecialchars($property['locations']) ?></td>
-                        <td><?= htmlspecialchars($property['lot_areas']) ?></td>
-                        <td><?= htmlspecialchars($property['floor_areas']) ?></td>
-                        <td><?= number_format($property['price_ranges'], 2) ?></td>
-                        <td><?= htmlspecialchars($property['property_classes']) ?></td>
-                        <td><?= htmlspecialchars($property['descr']) ?></td>
-                        <td>
-                            <a href="?action=edit&id=<?= $property['property_id'] ?>" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $property['property_id'] ?>)">
-                                Delete
-                            </a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 
     <script>
         function confirmDelete(propertyId) {

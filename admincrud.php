@@ -11,8 +11,8 @@ class PropertyCRUD {
 
     // Create a new property
     public function createProperty($data) {
-        $query = "INSERT INTO property (categories, locations, lot_areas, floor_areas, price_ranges, property_classes)
-                  VALUES (:categories, :locations, :lot_areas, :floor_areas, :price_ranges, :property_classes)";
+        $query = "INSERT INTO property (categories, locations, lot_areas, floor_areas, price_ranges, property_classes, descr)
+                  VALUES (:categories, :locations, :lot_areas, :floor_areas, :price_ranges, :property_classes, :descr)";
         $stmt = $this->pdo->prepare($query);
         return $stmt->execute([
             ':categories' => $data['categories'] ?? '',
@@ -21,6 +21,7 @@ class PropertyCRUD {
             ':floor_areas' => $data['floor_areas'] ?? '',
             ':price_ranges' => $data['price_ranges'] ?? '',
             ':property_classes' => $data['property_classes'] ?? '',
+            ':descr' => $data['descr'] ?? '',
         ]);
     }
 
@@ -43,7 +44,7 @@ class PropertyCRUD {
     public function updateProperty($property_id, $data) {
         $query = "UPDATE property SET 
                   categories = :categories, locations = :locations, lot_areas = :lot_areas,
-                  floor_areas = :floor_areas, price_ranges = :price_ranges, property_classes = :property_classes
+                  floor_areas = :floor_areas, price_ranges = :price_ranges, property_classes = :property_classes, descr = :descr
                   WHERE property_id = :property_id";
         $stmt = $this->pdo->prepare($query);
         return $stmt->execute([
@@ -54,6 +55,7 @@ class PropertyCRUD {
             ':floor_areas' => $data['floor_areas'] ?? '',
             ':price_ranges' => $data['price_ranges'] ?? '',
             ':property_classes' => $data['property_classes'] ?? '',
+            ':descr' => $data['descr'] ?? '',
         ]);
     }
 
@@ -66,18 +68,10 @@ class PropertyCRUD {
     //Check for duplicates
     public function checkDuplicateProperty($data) {
         $query = "SELECT COUNT(*) as count FROM property WHERE 
-                  categories = :categories AND 
-                  locations = :locations AND 
-                  lot_areas = :lot_areas AND 
-                  floor_areas = :floor_areas AND 
-                  price_ranges = :price_ranges";
+                    descr = :descr";
     
         $stmt = $this->pdo->prepare($query);
-        $stmt->bindParam(':categories', $data['categories']);
-        $stmt->bindParam(':locations', $data['locations']);
-        $stmt->bindParam(':lot_areas', $data['lot_areas']);
-        $stmt->bindParam(':floor_areas', $data['floor_areas']);
-        $stmt->bindParam(':price_ranges', $data['price_ranges']);
+        $stmt->bindParam(':descr', $data['descr']);
         $stmt->execute();
     
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

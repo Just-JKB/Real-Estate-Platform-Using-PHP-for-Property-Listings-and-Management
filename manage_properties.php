@@ -105,7 +105,9 @@ if ($action === 'edit' && isset($_GET['id'])) {
 </head>
 <body>
     <nav>
-        <div class="logo">Clavem</div>
+    <a href="index.php">
+    <div class="logo">Clavem</div>
+</a>   
         <ul class="navbar">
             <li><a href="javascript:void(0);" onclick="confirmLogout()">Logout</a></li>
         </ul>
@@ -171,48 +173,76 @@ if ($action === 'edit' && isset($_GET['id'])) {
                     <?php endforeach; ?>
                 </select>
             </div>
-            <button type="submit" class="btn btn-success"><?= $editProperty ? "Update Property" : "Post Property" ?></button>
+            <div class="form-group">
+    <label for="descr">Description</label>
+    <!-- Textarea for description -->
+    <textarea name="descr" id="descr" class="form-control" rows="5" required placeholder="Enter description" maxlength="500"><?= $editProperty ? htmlspecialchars($editProperty['descr']) : '' ?></textarea>
+    <!-- Character count display -->
+    <small id="charCount" class="form-text text-muted">500 characters remaining</small>
+    </div>
+
+        <button type="submit" class="btn btn-success"><?= $editProperty ? "Update Property" : "Post Property" ?></button>
+
             <?php if ($editProperty): ?>
-                <a href="manage_properties.php" class="btn btn-secondary">Cancel</a>
+                 <a href="manage_properties.php" class="btn btn-secondary">Cancel</a>
             <?php endif; ?>
+
+    <script>
+             // JavaScript to update the character count
+            const textarea = document.getElementById('descr');
+            const charCountDisplay = document.getElementById('charCount');
+
+             // Function to update the character count
+            textarea.addEventListener('input', function() {
+           const remainingChars = 500 - textarea.value.length;
+           charCountDisplay.textContent = `${remainingChars} characters remaining`;
+    });
+
+    // Initial update on page load
+    const initialRemainingChars = 500 - textarea.value.length;
+    charCountDisplay.textContent = `${initialRemainingChars} characters remaining`;
+    </script>
         </form>
 
         <!-- List Properties -->
         <h2 class="mt-5">Properties</h2>
-        <table class="table table-bordered">
-            <thead>
+<div>
+    <table class="table table-bordered"style="width: 80%;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Location</th>
+                <th>Lot Area</th>
+                <th>Floor Area</th>
+                <th>Price</th>
+                <th>Classification</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($properties as $property): ?>
                 <tr>
-                    <th>ID</th>
-                    <th>Category</th>
-                    <th>Location</th>
-                    <th>Lot Area</th>
-                    <th>Floor Area</th>
-                    <th>Price</th>
-                    <th>Classification</th>
-                    <th>Actions</th>
+                    <td><?= htmlspecialchars($property['property_id']) ?></td>
+                    <td><?= htmlspecialchars($property['categories']) ?></td>
+                    <td><?= htmlspecialchars($property['locations']) ?></td>
+                    <td><?= htmlspecialchars($property['lot_areas']) ?></td>
+                    <td><?= htmlspecialchars($property['floor_areas']) ?></td>
+                    <td><?= number_format($property['price_ranges'], 2) ?></td>
+                    <td><?= htmlspecialchars($property['property_classes']) ?></td>
+                    <td><?= htmlspecialchars($property['descr']) ?></td> <!-- Corrected description column -->
+                    <td>
+                        <a href="?action=edit&id=<?= $property['property_id'] ?>" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $property['property_id'] ?>)">
+                            Delete
+                        </a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($properties as $property): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($property['property_id']) ?></td>
-                        <td><?= htmlspecialchars($property['categories']) ?></td>
-                        <td><?= htmlspecialchars($property['locations']) ?></td>
-                        <td><?= htmlspecialchars($property['lot_areas']) ?></td>
-                        <td><?= htmlspecialchars($property['floor_areas']) ?></td>
-                        <td><?= number_format($property['price_ranges'], 2) ?></td>
-                        <td><?= htmlspecialchars($property['property_classes']) ?></td>
-                        <td>
-                            <a href="?action=edit&id=<?= $property['property_id'] ?>" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $property['property_id'] ?>)">
-                                Delete
-                            </a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 
     <script>
         function confirmDelete(propertyId) {

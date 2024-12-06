@@ -66,4 +66,12 @@ nav{
     padding: 10px 0; 
     bottom: 0;
     width: 100%;
+}a {
+    text-decoration: none;
+    color: white;
+     /* Remove underline */
+}
+a:hover {
+    color: white; /* Keeps the text color white when hovering */
+    text-decoration: none; /* Keeps no underline when hovering */
 }

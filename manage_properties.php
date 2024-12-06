@@ -207,8 +207,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
         <!-- List Properties -->
         <h2 class="mt-5">Properties</h2>
 <div>
-    <table class="table table-bordered"style="width: 80%;">
-        
+<table class="table table-bordered"style="width: 80%;">
                     <th>ID</th>
                     <th>Category</th>
                     <th>Location</th>
@@ -241,11 +240,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
     </tr>
 <?php endforeach; ?>
             <?php endforeach; ?>
-
-            </tbody>
-        </table>
-    </div>
-
+                <?php endforeach; ?>
     <script>
         function confirmDelete(propertyId) {
             Swal.fire({

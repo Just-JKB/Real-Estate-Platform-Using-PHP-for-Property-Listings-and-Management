@@ -207,7 +207,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
         <!-- List Properties -->
         <h2 class="mt-5">Properties</h2>
 <div>
-    <tabl class="table table-bordered"style="width: 80%;">
+    < class="table table-bordered"style="width: 80%;">
         <thead>
             <tr>
                 <th>ID</th>
@@ -257,7 +257,26 @@ if ($action === 'edit' && isset($_GET['id'])) {
     </tr>
 <?php endforeach; ?>
             <?php endforeach; ?>
-                <?php endforeach; ?>
+    </div>
+                    <td><?= htmlspecialchars($property['property_id']) ?></td>
+                    <td><?= htmlspecialchars($property['categories']) ?></td>
+                    <td><?= htmlspecialchars($property['locations']) ?></td>
+                    <td><?= htmlspecialchars($property['lot_areas']) ?></td>
+                    <td><?= htmlspecialchars($property['floor_areas']) ?></td>
+                    <td><?= number_format($property['price_ranges'], 2) ?></td>
+                    <td><?= htmlspecialchars($property['property_classes']) ?></td>
+                    <td><?= htmlspecialchars($property['descr']) ?></td> <!-- Corrected description column -->
+                    <td>
+                        <a href="?action=edit&id=<?= $property['property_id'] ?>" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $property['property_id'] ?>)">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
     <script>
         function confirmDelete(propertyId) {
             Swal.fire({

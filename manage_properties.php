@@ -171,6 +171,10 @@ if ($action === 'edit' && isset($_GET['id'])) {
                     <?php endforeach; ?>
                 </select>
             </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input type="Text" name="descr" class="form-control" required placeholder="Enter description" value="<?= $editProperty ? htmlspecialchars($editProperty['descr']) : '' ?>"  required>
+            </div>
             <button type="submit" class="btn btn-success"><?= $editProperty ? "Update Property" : "Post Property" ?></button>
             <?php if ($editProperty): ?>
                 <a href="manage_properties.php" class="btn btn-secondary">Cancel</a>
@@ -179,7 +183,8 @@ if ($action === 'edit' && isset($_GET['id'])) {
 
         <!-- List Properties -->
         <h2 class="mt-5">Properties</h2>
-        <table class="table table-bordered">
+        <div>
+        <table class="table table-bordered" style="width: 130%">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -202,6 +207,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
                         <td><?= htmlspecialchars($property['floor_areas']) ?></td>
                         <td><?= number_format($property['price_ranges'], 2) ?></td>
                         <td><?= htmlspecialchars($property['property_classes']) ?></td>
+                        <td><?= htmlspecialchars($property['descr']) ?></td>
                         <td>
                             <a href="?action=edit&id=<?= $property['property_id'] ?>" class="btn btn-primary btn-sm">Edit</a>
                             <a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $property['property_id'] ?>)">

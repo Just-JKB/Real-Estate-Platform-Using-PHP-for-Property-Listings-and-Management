@@ -208,23 +208,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
         <h2 class="mt-5">Properties</h2>
 <div>
     <table class="table table-bordered"style="width: 80%;">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Category</th>
-                <th>Location</th>
-                <th>Lot Area</th>
-                <th>Floor Area</th>
-                <th>Price</th>
-                <th>Classification</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($properties as $property): ?>
-                <tr>
-<<<<<<< HEAD
+        
                     <th>ID</th>
                     <th>Category</th>
                     <th>Location</th>

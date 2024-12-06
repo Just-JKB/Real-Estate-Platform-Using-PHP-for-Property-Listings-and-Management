@@ -172,13 +172,34 @@ if ($action === 'edit' && isset($_GET['id'])) {
                 </select>
             </div>
             <div class="form-group">
-                <label>Description</label>
-                <input type="Text" name="descr" class="form-control" required placeholder="Enter description" value="<?= $editProperty ? htmlspecialchars($editProperty['descr']) : '' ?>"  required>
-            </div>
-            <button type="submit" class="btn btn-success"><?= $editProperty ? "Update Property" : "Post Property" ?></button>
+    <label for="descr">Description</label>
+    <!-- Textarea for description -->
+    <textarea name="descr" id="descr" class="form-control" rows="5" required placeholder="Enter description" maxlength="500"><?= $editProperty ? htmlspecialchars($editProperty['descr']) : '' ?></textarea>
+    <!-- Character count display -->
+    <small id="charCount" class="form-text text-muted">500 characters remaining</small>
+    </div>
+
+        <button type="submit" class="btn btn-success"><?= $editProperty ? "Update Property" : "Post Property" ?></button>
+
             <?php if ($editProperty): ?>
-                <a href="manage_properties.php" class="btn btn-secondary">Cancel</a>
+                 <a href="manage_properties.php" class="btn btn-secondary">Cancel</a>
             <?php endif; ?>
+
+    <script>
+             // JavaScript to update the character count
+            const textarea = document.getElementById('descr');
+            const charCountDisplay = document.getElementById('charCount');
+
+             // Function to update the character count
+            textarea.addEventListener('input', function() {
+           const remainingChars = 500 - textarea.value.length;
+           charCountDisplay.textContent = `${remainingChars} characters remaining`;
+    });
+
+    // Initial update on page load
+    const initialRemainingChars = 500 - textarea.value.length;
+    charCountDisplay.textContent = `${initialRemainingChars} characters remaining`;
+    </script>
         </form>
 
         <!-- List Properties -->

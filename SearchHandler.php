@@ -1,6 +1,7 @@
 <?php
 
 require_once 'DatabaseConnection.php';
+require_once 'PropertyData';
 
 class SearchHandler
 {
@@ -128,7 +129,7 @@ class SearchHandler
 
         return $this->results;
     }
-
+    
     public function getCategories()
     {
         return ['Apartment', 'Building', 'Commercial Space', 'Condominium', 'House & Lot', 'Lot w/ Unfinished Structure', 'Lot with Structure', 'Others', 'Townhouse', 'Vacant Lot', 'Warehouse'];

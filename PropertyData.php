@@ -1,7 +1,7 @@
 <?php
 class PropertyData{
 
-private $categories = [
+public $categories = [
     "Apartment", "Building", "Commercial Space", "Condominium", "House & Lot",
     "Lot w/ Unfinished Structure", "Lot with Structure", "Others", "Townhouse", "Vacant Lot", "Warehouse"
 ];

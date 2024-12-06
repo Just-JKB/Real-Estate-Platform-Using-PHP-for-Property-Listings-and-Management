@@ -1,7 +1,7 @@
 <?php
 session_start();  // Start session to store user data
 
-require_once 'users.php';  // Include the users array to check credentials
+require_once 'passkey.php';  // Include the users array to check credentials
 
 // Check if the user is already logged in
 if (isset($_SESSION['username'])) {
@@ -51,8 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <nav>
     <div class="logo">
-    <div class="Banner">Clavem</div>
-    <img src="logo\clavem_logo.png" alt="Clavem" height="50"> <!-- Add your logo image here -->
+    <img src="logo\clavem-logo.png.png" alt="Clavem" height="50" class="img-size"> <!-- Add your logo image here -->
     </div>
 </nav>
 
@@ -73,5 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
     </div>
 </div>
+<footer class="footer-bar">
+	&copy; 2024 Clavem. All rights reserved.
+</footer>
 </body>
 </html>

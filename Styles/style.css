@@ -48,3 +48,22 @@ nav{
     color: #5f1214;
 
 }
+.footer-bar {
+    background-color:#ffffff;
+    ; 
+    color: rgb(0, 0, 0); 
+    text-align: center; 
+    padding: 10px 0; 
+    position: fixed; 
+    bottom: 0;
+    width: 100%;
+}
+.long-footer-bar {
+    background-color:#ffffff;
+    ; 
+    color: rgb(0, 0, 0); 
+    text-align: center; 
+    padding: 10px 0; 
+    bottom: 0;
+    width: 100%;
+}

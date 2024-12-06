@@ -1,29 +1,17 @@
 <?php
 
-require_once 'DatabaseConnection.php';
+require_once 'DatabaseConnection.php'; //calling property data using require once so that if it fails it shows an error
 
-class SearchHandler
+class SearchHandler //class that handles the search operation 
 {
-    private $pdo;
-    private $errors = [];
-    private $results = [];
+    private $pdo; //instance of database connection
+
+    private $results = [];//empty array for results
 
     public function __construct()
     {
         $database = new Database();
         $this->pdo = $database->getConnection();
-    }
-
-    private function validateInput($data)
-    {
-        if ($data['categories'] && !in_array($data['categories'], $this->getCategories())) {
-            $this->errors[] = "Invalid category selected.";
-        }
-
-        if ($data['locations'] && !in_array($data['locations'], $this->getLocations())) {
-            $this->errors[] = "Invalid location selected.";
-        }
-     
     }
 
     private function buildQuery($data)
@@ -42,22 +30,36 @@ class SearchHandler
     }
 
     if ($data['lot_areas']) {
-        $query .= " AND lot_areas = :lot_areas";
-        $params[':lot_areas'] = $data['lot_areas'];
+        [$minLot, $maxLot] = explode('-', $data['lot_areas']);
+        if ($maxLot === '1000000') {
+            $query .= " AND lot_areas >= :min_lot";
+            $params[':min_lot'] = $minLot;
+        } else {
+            $query .= " AND lot_areas BETWEEN :min_lot AND :max_lot";
+            $params[':min_lot'] = $minLot;
+            $params[':max_lot'] = $maxLot;
+        }
     }
-
+    
     if ($data['floor_areas']) {
-        $query .= " AND floor_areas = :floor_areas";
-        $params[':floor_areas'] = $data['floor_areas'];
+        [$minFloor, $maxFloor] = explode('-', $data['floor_areas']);
+        if ($maxFloor === '1000000') {
+            $query .= " AND floor_areas >= :min_floor";
+            $params[':min_floor'] = $minFloor;
+        } else {
+            $query .= " AND floor_areas BETWEEN :min_floor AND :max_floor";
+            $params[':min_floor'] = $minFloor;
+            $params[':max_floor'] = $maxFloor;
+        }
     }
 
     if ($data['price_ranges']) {
         [$minPrice, $maxPrice] = explode('-', $data['price_ranges']);
         if ($maxPrice === 'above') {
-            $query .= " AND price >= :min_price";
+            $query .= " AND price_ranges >= :min_price";
             $params[':min_price'] = $minPrice;
         } else {
-            $query .= " AND price BETWEEN :min_price AND :max_price";
+            $query .= " AND price_ranges BETWEEN :min_price AND :max_price";
             $params[':min_price'] = $minPrice;
             $params[':max_price'] = $maxPrice;
         }
@@ -71,10 +73,10 @@ class SearchHandler
     if ($data['sort_by']) {
         switch ($data['sort_by']) {
             case 'price_asc':
-                $query .= " ORDER BY price ASC";
+                $query .= " ORDER BY price_ranges ASC";
                 break;
             case 'price_desc':
-                $query .= " ORDER BY price DESC";
+                $query .= " ORDER BY price_ranges DESC";
                 break;
             case 'lot_area_asc':
                 $query .= " ORDER BY lot_areas ASC";
@@ -99,11 +101,6 @@ class SearchHandler
 
     public function handleSearch($data)
     {
-        $this->validateInput($data);
-
-        if (!empty($this->errors)) {
-            return $this->errors;
-        }
 
         [$query, $params] = $this->buildQuery($data);
 
@@ -114,25 +111,35 @@ class SearchHandler
 
         return $this->results;
     }
-
+    
     public function getCategories()
     {
-        return ['Apartment', 'Building', 'Commercial Space', 'Condominium', 'House & Lot', 'Lot w/ Unfinished Structure', 'Lot with Structure', 'Others', 'Townhouse', 'Vacant Lot', 'Warehouse'];
+        return ['Apartment', 'Building', 'Commercial Space', 'Condominium', 'House & Lot', 'Lot w/ Unfinished Structure', 'Lot with Structure','Townhouse', 'Vacant Lot', 'Warehouse'];
     }
 
     public function getLocations()
     {
-        return ['Adya', 'Anilao', 'Antipolo del Norte', 'Antipolo del Sur']; // Add all locations
+        return [
+            "Adya", "Anilao", "Anilao-Labac", "Antipolo del Norte", "Antipolo del Sur", "Bagong Pook", "Balintawak", "Banaybanay", "Bolbok",
+             "Bugtong na Pulo", "Bulacnin", "Bulaklakan", "Calamias", "Cumba", "Dagatan", "Duhatan", "Halang", "Inosloban", "Kayumanggi", "Latag",
+              "Lodlod", "Lumbang", "Mabini", "Malagonlong", "Malitlit", "Marauoy", "Mataas na Lupa", "Munting Pulo", "Pagolingin Bata", 
+              "Pagolingin East", "Pagolingin West", "Pangao", "Pinagkawitan", "Pinagtongulan", "Plaridel", "Poblacion Barangay 1", 
+              "Poblacion Barangay 2", "Poblacion Barangay 3", "Poblacion Barangay 4", "Poblacion Barangay 5", "Poblacion Barangay 6", 
+              "Poblacion Barangay 7", "Poblacion Barangay 8", "Poblacion Barangay 9", "Poblacion Barangay 9-A", "Poblacion Barangay 10", 
+              "Poblacion Barangay 11", "Poblacion Barangay 12", "Pusil", "Quezon", "Rizal", "Sabang", "Sampaguita", "San Benito", "San Carlos", 
+              "San Celestino", "San Francisco", "San Guillermo", "San Jose", "San Lucas", "San Salvador", "San Sebastian", "Santo Niño", 
+              "Santo Toribio", "Sapac", "Sico", "Talisay", "Tambo", "Tangob", "Tanguay", "Tibig", "Tipacan"
+        ];
     }
 
     public function getLotAreas()
     {
-        return ['0-250', '251-500', '501-750', '751-1000', '1001-1500', '1501-2500', '2501-1000000'];
+        return ['40-250', '251-500', '501-750', '751-1000', '1001-1500', '1501-2500', '2501-1000000'];
     }
 
     public function getFloorAreas()
     {
-        return $this->getLotAreas(); // Reuse same options
+        return ['0-250', '251-500', '501-750', '751-1000', '1001-1500', '1501-2500', '2501-1000000'];
     }
 
     public function getPriceRanges()
@@ -142,6 +149,6 @@ class SearchHandler
 
     public function getPropertyClasses()
     {
-        return ['1', '2', '3'];
+        return ['Green', 'Yellow', 'Red'];
     }
 }

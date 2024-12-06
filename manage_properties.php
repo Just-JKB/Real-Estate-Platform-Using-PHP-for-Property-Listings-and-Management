@@ -1,5 +1,12 @@
 <?php
-require_once 'admincrud.php';
+require_once 'admincrud.php';//calling property data using require once so that if it fails it shows an error
+require_once 'PropertyData.php';
+
+
+$propdata = new PropertyData();
+$categories = $propdata->getCategories();//method calls
+$locations = $propdata->getLocations();
+$property_classes = $propdata->getPropertyClasses();
 
 $propertyCRUD = new PropertyCRUD();
 $action = $_GET['action'] ?? null;
@@ -9,19 +16,28 @@ $message = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($action === 'create') {
         $data = $_POST;
-        if ($propertyCRUD->createProperty($data)) {
-            $message = "Property created successfully!";
+        if ($propertyCRUD->checkDuplicateProperty($data)) {
+            $message = "This property already exists.";
             $showAlert = true;
-            $alertTitle = "Success!";
-            $alertText = "Property added successfully!";
-            $alertIcon = "success";
+            $alertTitle = "Duplicate Entry!";
+            $alertText = "Property Already exists!";
+            $alertIcon = "warning";
         } else {
-            $message = "Failed to create property.";
-            $showAlert = true;
-            $alertTitle = "Try Again!";
-            $alertText = "Failed to create property.";
-            $alertIcon = "error";
+            // Proceed with creation if no duplicate exists
+            if ($propertyCRUD->createProperty($data)) {
+                $message = "Property created successfully!";
+                $showAlert = true;
+                $alertTitle = "Success!";
+                $alertText = "Property added successfully!";
+                $alertIcon = "success";
+            } else {
+                $message = "Failed to create property.";
+                $showAlert = true;
+                $alertTitle = "Try Again!";
+                $alertText = "Failed to create property.";
+                $alertIcon = "error";
         }
+    }
     } elseif ($action === 'update') {
         $id = $_POST['id'];
         $data = $_POST;
@@ -74,23 +90,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
     }
 }
 
-// Define categories, locations, and property classes
-$categories = ['Apartment', 'Building', 'Commercial Space', 'Condominium', 'House & Lot', 'Lot w/ Unfinished Structure', 'Lot with Structure', 'Others', 'Townhouse', 'Vacant Lot', 'Warehouse'];
-$locations = [
-    "Adya", "Anilao", "Anilao-Labac", "Antipolo del Norte", "Antipolo del Sur", "Bagong Pook", "Balintawak", "Banaybanay", "Bolbok",
-     "Bugtong na Pulo", "Bulacnin", "Bulaklakan", "Calamias", "Cumba", "Dagatan", "Duhatan", "Halang", "Inosloban", "Kayumanggi", "Latag",
-      "Lodlod", "Lumbang", "Mabini", "Malagonlong", "Malitlit", "Marauoy", "Mataas na Lupa", "Munting Pulo", "Pagolingin Bata", 
-      "Pagolingin East", "Pagolingin West", "Pangao", "Pinagkawitan", "Pinagtongulan", "Plaridel", "Poblacion Barangay 1", 
-      "Poblacion Barangay 2", "Poblacion Barangay 3", "Poblacion Barangay 4", "Poblacion Barangay 5", "Poblacion Barangay 6", 
-      "Poblacion Barangay 7", "Poblacion Barangay 8", "Poblacion Barangay 9", "Poblacion Barangay 9-A", "Poblacion Barangay 10", 
-      "Poblacion Barangay 11", "Poblacion Barangay 12", "Pusil", "Quezon", "Rizal", "Sabang", "Sampaguita", "San Benito", "San Carlos", 
-      "San Celestino", "San Francisco", "San Guillermo", "San Jose", "San Lucas", "San Salvador", "San Sebastian", "Santo Niño", 
-      "Santo Toribio", "Sapac", "Sico", "Talisay", "Tambo", "Tangob", "Tanguay", "Tibig", "Tipacan"
-];
-$property_classes = ['Class 1 - Properties that are premium, well-located buildings with top amenities, high-income tenants, low vacancy rates, and minimal maintenance.',
-                    'Class 2 - Properties that are older, lower-income buildings with renovation potential, offering higher CAP rates and lower rents than Class 1.',
-                    'Class 3 - Properties are over 20 years old, in need of renovation, and offer the lowest rental rates, requiring improvements for steady cash flow.'
-];
+
 ?>
 
 <!DOCTYPE html>
@@ -107,9 +107,6 @@ $property_classes = ['Class 1 - Properties that are premium, well-located buildi
     <nav>
         <div class="logo">Clavem</div>
         <ul class="navbar">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="About.php">About Us</a></li>
-            <li><a href="Contact.php">Contact Us</a></li>
             <li><a href="javascript:void(0);" onclick="confirmLogout()">Logout</a></li>
         </ul>
     </nav>
@@ -130,7 +127,7 @@ $property_classes = ['Class 1 - Properties that are premium, well-located buildi
             <?php endif; ?>
             <div class="form-group">
                 <label>Category</label>
-                <select name="categories" class="form-control" <?= $editProperty ? 'disabled' : '' ?> required>
+                <select name="categories" class="form-control" required>
                     <option value="">-Select Category-</option>
                     <?php foreach ($categories as $category): ?>
                         <option value="<?= htmlspecialchars($category) ?>" <?= $editProperty && $editProperty['categories'] == $category ? 'selected' : '' ?>>
@@ -141,7 +138,7 @@ $property_classes = ['Class 1 - Properties that are premium, well-located buildi
             </div>
             <div class="form-group">
                 <label>Location</label>
-                <select name="locations" class="form-control" <?= $editProperty ? 'disabled' : '' ?> required>
+                <select name="locations" class="form-control" required>
                     <option value="">-Select Location-</option>
                     <?php foreach ($locations as $location): ?>
                         <option value="<?= htmlspecialchars($location) ?>" <?= $editProperty && $editProperty['locations'] == $location ? 'selected' : '' ?>>
@@ -152,16 +149,16 @@ $property_classes = ['Class 1 - Properties that are premium, well-located buildi
             </div>
             <div class="form-group">
                 <label>Lot Area</label>
-                <input type="text" name="lot_areas" class="form-control" placeholder="Enter Lot Area" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required >
+                <input type="number" min="40" name="lot_areas" class="form-control" placeholder="Enter Lot Area" value="<?= $editProperty ? htmlspecialchars($editProperty['lot_areas']) : '' ?>" required >
                 
             </div>
             <div class="form-group">
                 <label>Floor Area</label>
-                <input type="text" name="floor_areas" class="form-control" required placeholder="Enter Floor Area" value="<?= $editProperty ? htmlspecialchars($editProperty['floor_areas']) : '' ?>" <?= $editProperty ? 'disabled' : '' ?> required>
+                <input type="number" min="0" name="floor_areas" class="form-control" required placeholder="Enter Floor Area" value="<?= $editProperty ? htmlspecialchars($editProperty['floor_areas']) : '' ?>" required>
             </div>
             <div class="form-group">
                 <label>Price</label>
-                <input type="number" name="price_ranges" class="form-control" required placeholder="Enter Price" value="<?= $editProperty ? htmlspecialchars($editProperty['price_ranges']) : '' ?>"  required>
+                <input type="number" min="0" name="price_ranges" class="form-control" required placeholder="Enter Price" value="<?= $editProperty ? htmlspecialchars($editProperty['price_ranges']) : '' ?>"  required>
             </div>
             <div class="form-group">
                 <label>Property Class</label>

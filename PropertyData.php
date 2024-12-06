@@ -1,9 +1,9 @@
 <?php
 class PropertyData{
 
-private $categories = [
+public $categories = [
     "Apartment", "Building", "Commercial Space", "Condominium", "House & Lot",
-    "Lot w/ Unfinished Structure", "Lot with Structure", "Others", "Townhouse", "Vacant Lot", "Warehouse"
+    "Lot w/ Unfinished Structure", "Lot with Structure", "Townhouse", "Vacant Lot", "Warehouse"
 ];
 
 private $locations = [
@@ -18,40 +18,45 @@ private $locations = [
       "Santo Toribio", "Sapac", "Sico", "Talisay", "Tambo", "Tangob", "Tanguay", "Tibig", "Tipacan"
 ];
 
+// Lot Areas
 private $lot_areas = [
-    "0-250" => "1 sqm to 250 sqm",
-    "251-500" => "251 sqm to 500 sqm",
-    "501-750" => "501 sqm to 750 sqm",
-    "751-1000" => "751 sqm to 1,000 sqm",
-    "1001-1500" => "1,001 sqm to 1,500 sqm",
-    "1501-2500" => "1,501 sqm to 2,500 sqm",
-    "2501-1000000" => "2,501 sqm and above"
+    "40-250" => [40, 250],
+    "251-500" => [251, 500],
+    "501-750" => [501, 750],
+    "751-1000" => [751, 1000],
+    "1001-1500" => [1001, 1500],
+    "1501-2500" => [1501, 2500],
+    "2501-1000000" => [2501, 1000000]
 ];
 
-private $floor_areas; 
+// Floor Areas
+private $floor_areas = [
+    "0-250" => [0, 250],
+    "251-500" => [251, 500],
+    "501-750" => [501, 750],
+    "751-1000" => [751, 1000],
+    "1001-1500" => [1001, 1500],
+    "1501-2500" => [1501, 2500],
+    "2501-1000000" => [2501, 1000000]
+];
 
+// Price Ranges
 private $price_ranges = [
-    "1-500000" => "PHP 1 to PHP 500,000",
-    "500001-1000000" => "PHP 500,001 to PHP 1,000,000",
-    "1000001-5000000" => "PHP 1,000,001 to PHP 5,000,000",
-    "5000001-10000000" => "PHP 5,000,001 to PHP 10,000,000",
-    "10000001-15000000" => "PHP 10,000,001 to PHP 15,000,000",
-    "15000001-20000000" => "PHP 15,000,001 to PHP 20,000,000",
-    "20000001-50000000" => "PHP 20,000,001 to PHP 50,000,000",
-    "50000001-above" => "PHP 50,000,001 and above"
+    "1-500000" => [1, 500000],
+    "500001-1000000" => [500001, 1000000],
+    "1000001-5000000" => [1000001, 5000000],
+    "5000001-10000000" => [5000001, 10000000],
+    "10000001-15000000" => [10000001, 15000000],
+    "15000001-20000000" => [15000001, 20000000],
+    "20000001-50000000" => [20000001, 50000000],
+    "50000001-above" => [50000001, PHP_INT_MAX]
 ];
 
 private $property_classes = [
-    "1" => "Green Tag",
-    "2" => "Yellow Tag",
-    "3" => "Red Tag"
+    'Green Tag' => 'Green',
+    'Yellow Tag' => 'Yellow',
+    'Red Tag' => 'Red'
 ];
-
-public function __construct() //make the fields lot area == floor area
-{
-    
-    $this->floor_areas = $this->lot_areas;
-}
 
 public function getCategories()
     {

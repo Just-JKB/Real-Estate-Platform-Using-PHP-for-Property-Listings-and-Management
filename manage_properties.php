@@ -1,5 +1,12 @@
 <?php
-require_once 'admincrud.php';
+require_once 'admincrud.php';//calling property data using require once so that if it fails it shows an error
+require_once 'PropertyData.php';
+
+
+$propdata = new PropertyData();
+$categories = $propdata->getCategories();//method calls
+$locations = $propdata->getLocations();
+$property_classes = $propdata->getPropertyClasses();
 
 $propertyCRUD = new PropertyCRUD();
 $action = $_GET['action'] ?? null;
@@ -83,23 +90,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
     }
 }
 
-// Define categories, locations, and property classes
-$categories = ['Apartment', 'Building', 'Commercial Space', 'Condominium', 'House & Lot', 'Lot w/ Unfinished Structure', 'Lot with Structure', 'Others', 'Townhouse', 'Vacant Lot', 'Warehouse'];
-$locations = [
-    "Adya", "Anilao", "Anilao-Labac", "Antipolo del Norte", "Antipolo del Sur", "Bagong Pook", "Balintawak", "Banaybanay", "Bolbok",
-     "Bugtong na Pulo", "Bulacnin", "Bulaklakan", "Calamias", "Cumba", "Dagatan", "Duhatan", "Halang", "Inosloban", "Kayumanggi", "Latag",
-      "Lodlod", "Lumbang", "Mabini", "Malagonlong", "Malitlit", "Marauoy", "Mataas na Lupa", "Munting Pulo", "Pagolingin Bata", 
-      "Pagolingin East", "Pagolingin West", "Pangao", "Pinagkawitan", "Pinagtongulan", "Plaridel", "Poblacion Barangay 1", 
-      "Poblacion Barangay 2", "Poblacion Barangay 3", "Poblacion Barangay 4", "Poblacion Barangay 5", "Poblacion Barangay 6", 
-      "Poblacion Barangay 7", "Poblacion Barangay 8", "Poblacion Barangay 9", "Poblacion Barangay 9-A", "Poblacion Barangay 10", 
-      "Poblacion Barangay 11", "Poblacion Barangay 12", "Pusil", "Quezon", "Rizal", "Sabang", "Sampaguita", "San Benito", "San Carlos", 
-      "San Celestino", "San Francisco", "San Guillermo", "San Jose", "San Lucas", "San Salvador", "San Sebastian", "Santo Niño", 
-      "Santo Toribio", "Sapac", "Sico", "Talisay", "Tambo", "Tangob", "Tanguay", "Tibig", "Tipacan"
-];
-$property_classes = ['Green',
-                    'Yellow',
-                    'Red'
-];
+
 ?>
 
 <!DOCTYPE html>

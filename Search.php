@@ -53,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<p class='card-text'><strong>Floor Area:</strong> {$property['floor_areas']} sqm</p>";
             echo "<p class='card-text'><strong>Price:</strong> PHP " . number_format($property['price_ranges'], 2) . "</p>";
             echo "<p class='card-text'><strong>Classification:</strong> {$property['property_classes']}</p>";
+         
             echo "</div>";
             echo "</div>";
         }

@@ -1,29 +1,17 @@
 <?php
 
-require_once 'DatabaseConnection.php';
+require_once 'DatabaseConnection.php'; //calling property data using require once so that if it fails it shows an error
 
-class SearchHandler
+class SearchHandler //class that handles the search operation 
 {
-    private $pdo;
-    private $errors = [];
-    private $results = [];
+    private $pdo; //instance of database connection
+
+    private $results = [];//empty array for results
 
     public function __construct()
     {
         $database = new Database();
         $this->pdo = $database->getConnection();
-    }
-
-    private function validateInput($data)
-    {
-        if ($data['categories'] && !in_array($data['categories'], $this->getCategories())) {
-            $this->errors[] = "Invalid category selected.";
-        }
-
-        if ($data['locations'] && !in_array($data['locations'], $this->getLocations())) {
-            $this->errors[] = "Invalid location selected.";
-        }
-     
     }
 
     private function buildQuery($data)
@@ -113,11 +101,6 @@ class SearchHandler
 
     public function handleSearch($data)
     {
-        $this->validateInput($data);
-
-        if (!empty($this->errors)) {
-            return $this->errors;
-        }
 
         [$query, $params] = $this->buildQuery($data);
 
@@ -131,7 +114,7 @@ class SearchHandler
     
     public function getCategories()
     {
-        return ['Apartment', 'Building', 'Commercial Space', 'Condominium', 'House & Lot', 'Lot w/ Unfinished Structure', 'Lot with Structure', 'Others', 'Townhouse', 'Vacant Lot', 'Warehouse'];
+        return ['Apartment', 'Building', 'Commercial Space', 'Condominium', 'House & Lot', 'Lot w/ Unfinished Structure', 'Lot with Structure','Townhouse', 'Vacant Lot', 'Warehouse'];
     }
 
     public function getLocations()

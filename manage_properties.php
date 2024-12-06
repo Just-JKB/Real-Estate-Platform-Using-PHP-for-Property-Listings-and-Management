@@ -172,12 +172,12 @@ if ($action === 'edit' && isset($_GET['id'])) {
                 </select>
             </div>
             <div class="form-group">
-    <label for="descr">Description</label>
-    <!-- Textarea for description -->
-    <textarea name="descr" id="descr" class="form-control" rows="5" required placeholder="Enter description" maxlength="500"><?= $editProperty ? htmlspecialchars($editProperty['descr']) : '' ?></textarea>
-    <!-- Character count display -->
-    <small id="charCount" class="form-text text-muted">500 characters remaining</small>
-    </div>
+                <label for="descr">Description</label>
+                    <!-- Textarea for description -->
+                    <textarea name="descr" id="descr" class="form-control" rows="5" required placeholder="Enter description" maxlength="500"><?= $editProperty ? htmlspecialchars($editProperty['descr']) : '' ?></textarea>
+                    <!-- Character count display -->
+                <small id="charCount" class="form-text text-muted">500 characters remaining</small>
+            </div>
 
         <button type="submit" class="btn btn-success"><?= $editProperty ? "Update Property" : "Post Property" ?></button>
 
@@ -215,28 +215,32 @@ if ($action === 'edit' && isset($_GET['id'])) {
                     <th>Floor Area</th>
                     <th>Price</th>
                     <th>Classification</th>
+                    <th>Descriptions</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
+            <?php foreach ($properties as $property): ?>
                 <?php foreach ($properties as $property): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($property['property_id']) ?></td>
-                        <td><?= htmlspecialchars($property['categories']) ?></td>
-                        <td><?= htmlspecialchars($property['locations']) ?></td>
-                        <td><?= htmlspecialchars($property['lot_areas']) ?></td>
-                        <td><?= htmlspecialchars($property['floor_areas']) ?></td>
-                        <td><?= number_format($property['price_ranges'], 2) ?></td>
-                        <td><?= htmlspecialchars($property['property_classes']) ?></td>
-                        <td><?= htmlspecialchars($property['descr']) ?></td>
-                        <td>
-                            <a href="?action=edit&id=<?= $property['property_id'] ?>" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $property['property_id'] ?>)">
-                                Delete
-                            </a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
+    <tr>
+        <td><?= htmlspecialchars($property['property_id']) ?></td>
+        <td><?= htmlspecialchars($property['categories']) ?></td>
+        <td><?= htmlspecialchars($property['locations']) ?></td>
+        <td><?= htmlspecialchars($property['lot_areas']) ?></td>
+        <td><?= htmlspecialchars($property['floor_areas']) ?></td>
+        <td><?= number_format($property['price_ranges'], 2) ?></td>
+        <td><?= htmlspecialchars($property['property_classes']) ?></td>
+        <td><?= nl2br(htmlspecialchars($property['descr'])) ?></td>
+        <td>
+            <a href="?action=edit&id=<?= $property['property_id'] ?>" class="btn btn-primary btn-sm">Edit</a>
+            <a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $property['property_id'] ?>)">
+                Delete
+            </a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+            <?php endforeach; ?>
+
             </tbody>
         </table>
     </div>

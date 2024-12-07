@@ -1,6 +1,6 @@
 <?php
 
-require_once 'PropertyData.php'; //calling property data using require once so that if it fails it shows an error
+require_once '../Database/PropertyData.php'; //calling property data using require once so that if it fails it shows an error
 
 
 $propertyData = new PropertyData(); //object instantiation to get the PropertyData class and its arrays
@@ -21,7 +21,7 @@ $property_classes = $propertyData->getPropertyClasses();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clavem</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="Styles\style.css">
+    <link rel="stylesheet" href="../Styles/style.css">
 </head>
 <body>
     <nav>
@@ -29,9 +29,9 @@ $property_classes = $propertyData->getPropertyClasses();
     <div class="logo">Clavem</div>
 </a>   
         <ul class="navbar">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="About.html">About Us</a></li>
-            <li><a href="Contact.html">Contact Us</a></li>
+            <li><a href="../guest/index.php">Home</a></li>
+            <li><a href="../html/About.html">About Us</a></li>
+            <li><a href="../html/Contact.html">Contact Us</a></li>
         </ul>
     </nav>
 
@@ -39,7 +39,7 @@ $property_classes = $propertyData->getPropertyClasses();
         <br>
         <br>
         <h3>Find Properties for Sale</h3>
-        <form method="POST" action="search.php"> <!-- uses form for user interaction POST for security and the action for where to go    -->
+        <form method="POST" action="../guest/search.php"> <!-- uses form for user interaction POST for security and the action for where to go    -->
             <!-- Dropdown for all variables -->
 
             <!-- Category -->    

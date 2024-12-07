@@ -1,5 +1,5 @@
 <?php
-require_once 'DatabaseConnection.php';
+require_once '../Database/DatabaseConnection.php';
 
 class PropertyCRUD {
     private $pdo;

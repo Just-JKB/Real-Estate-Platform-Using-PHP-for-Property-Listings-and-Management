@@ -1,6 +1,6 @@
 <?php
 
-require_once 'DatabaseConnection.php'; //calling property data using require once so that if it fails it shows an error
+require_once '../Database/DatabaseConnection.php'; //calling property data using require once so that if it fails it shows an error
 
 class SearchHandler //class that handles the search operation 
 {

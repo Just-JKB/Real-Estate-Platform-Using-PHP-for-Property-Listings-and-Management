@@ -1,6 +1,6 @@
 <?php
-require_once 'admincrud.php';//calling property data using require once so that if it fails it shows an error
-require_once 'PropertyData.php';
+require_once '../admin/admincrud.php';//calling property data using require once so that if it fails it shows an error
+require_once '../Database/PropertyData.php';
 
 
 $propdata = new PropertyData();
@@ -100,12 +100,12 @@ if ($action === 'edit' && isset($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clavem</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="Styles/style.css">
+    <link rel="stylesheet" href="../Styles/style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <nav>
-    <a href="index.php">
+    <a href="../guest/index.php">
     <div class="logo">Clavem</div>
 </a>   
         <ul class="navbar">

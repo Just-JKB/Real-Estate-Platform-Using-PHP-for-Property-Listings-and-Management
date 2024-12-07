@@ -1,5 +1,5 @@
 <?php
-require_once 'SearchHandler.php';
+require_once '../guest/SearchHandler.php';
 
 echo <<<HTML
 <!DOCTYPE html>
@@ -16,8 +16,8 @@ echo <<<HTML
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.2/dist/sweetalert2.all.min.js"></script>
 
 
-    <link rel="stylesheet" href="Styles\stylesearch.css">
-    <link rel="stylesheet" href="Styles\style.css">
+    <link rel="stylesheet" href="../Styles/stylesearch.css">
+    <link rel="stylesheet" href="../Styles/style.css">
 </head>
 <body>
 
@@ -26,9 +26,9 @@ echo <<<HTML
     <div class="logo">Clavem</div>
 </a>    
     <ul class="navbar">
-        <li><a href="index.php">Home</a></li>
-        <li><a href="About.html">About Us</a></li>
-        <li><a href="Contact.html">Contact Us</a></li>
+    <li><a href="index.php">Home</a></li>
+            <li><a href="../html/About.html">About Us</a></li>
+            <li><a href="../html/Contact.html">Contact Us</a></li>
     </ul>
 </nav>
 

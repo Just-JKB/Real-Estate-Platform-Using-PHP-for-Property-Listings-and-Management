@@ -1,29 +1,17 @@
 <?php
 
-require_once 'DatabaseConnection.php';
+require_once 'DatabaseConnection.php'; //calling property data using require once so that if it fails it shows an error
 
-class SearchHandler
+class SearchHandler //class that handles the search operation 
 {
-    private $pdo;
-    private $errors = [];
-    private $results = [];
+    private $pdo; //instance of database connection
+
+    private $results = [];//empty array for results
 
     public function __construct()
     {
         $database = new Database();
         $this->pdo = $database->getConnection();
-    }
-
-    private function validateInput($data)
-    {
-        if ($data['categories'] && !in_array($data['categories'], $this->getCategories())) {
-            $this->errors[] = "Invalid category selected.";
-        }
-
-        if ($data['locations'] && !in_array($data['locations'], $this->getLocations())) {
-            $this->errors[] = "Invalid location selected.";
-        }
-     
     }
 
     private function buildQuery($data)
@@ -52,7 +40,7 @@ class SearchHandler
             $params[':max_lot'] = $maxLot;
         }
     }
-
+    
     if ($data['floor_areas']) {
         [$minFloor, $maxFloor] = explode('-', $data['floor_areas']);
         if ($maxFloor === '1000000') {
@@ -113,11 +101,6 @@ class SearchHandler
 
     public function handleSearch($data)
     {
-        $this->validateInput($data);
-
-        if (!empty($this->errors)) {
-            return $this->errors;
-        }
 
         [$query, $params] = $this->buildQuery($data);
 
@@ -128,15 +111,25 @@ class SearchHandler
 
         return $this->results;
     }
-
+    
     public function getCategories()
     {
-        return ['Apartment', 'Building', 'Commercial Space', 'Condominium', 'House & Lot', 'Lot w/ Unfinished Structure', 'Lot with Structure', 'Others', 'Townhouse', 'Vacant Lot', 'Warehouse'];
+        return ['Apartment', 'Building', 'Commercial Space', 'Condominium', 'House & Lot', 'Lot w/ Unfinished Structure', 'Lot with Structure','Townhouse', 'Vacant Lot', 'Warehouse'];
     }
 
     public function getLocations()
     {
-        return ['Adya', 'Anilao', 'Antipolo del Norte', 'Antipolo del Sur']; // Add all locations
+        return [
+            "Adya", "Anilao", "Anilao-Labac", "Antipolo del Norte", "Antipolo del Sur", "Bagong Pook", "Balintawak", "Banaybanay", "Bolbok",
+             "Bugtong na Pulo", "Bulacnin", "Bulaklakan", "Calamias", "Cumba", "Dagatan", "Duhatan", "Halang", "Inosloban", "Kayumanggi", "Latag",
+              "Lodlod", "Lumbang", "Mabini", "Malagonlong", "Malitlit", "Marauoy", "Mataas na Lupa", "Munting Pulo", "Pagolingin Bata", 
+              "Pagolingin East", "Pagolingin West", "Pangao", "Pinagkawitan", "Pinagtongulan", "Plaridel", "Poblacion Barangay 1", 
+              "Poblacion Barangay 2", "Poblacion Barangay 3", "Poblacion Barangay 4", "Poblacion Barangay 5", "Poblacion Barangay 6", 
+              "Poblacion Barangay 7", "Poblacion Barangay 8", "Poblacion Barangay 9", "Poblacion Barangay 9-A", "Poblacion Barangay 10", 
+              "Poblacion Barangay 11", "Poblacion Barangay 12", "Pusil", "Quezon", "Rizal", "Sabang", "Sampaguita", "San Benito", "San Carlos", 
+              "San Celestino", "San Francisco", "San Guillermo", "San Jose", "San Lucas", "San Salvador", "San Sebastian", "Santo Niño", 
+              "Santo Toribio", "Sapac", "Sico", "Talisay", "Tambo", "Tangob", "Tanguay", "Tibig", "Tipacan"
+        ];
     }
 
     public function getLotAreas()

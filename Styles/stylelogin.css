@@ -79,17 +79,18 @@
             font-size: 20px;
         }
     }
-    .logo{
-        position: absolute; /* Positioning the element absolutely */
-        top: 1px; /* Add space from the top */
-        left: 1px; /* Add space from the left */
+        .logo {
+            position: absolute; /* Positioning the element absolutely */
+            top: 1px; /* Space from the top */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); 
     }
     .banner{
         margin-left: 5px;
          /* Space between the image and the text */
     }
     .img-size{
-        width: 200px; /* Default size */
+        width: 100px; /* Default size */
         height: auto;
     }
     .footer-bar {

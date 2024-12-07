@@ -1,5 +1,12 @@
 <?php
-require_once 'admincrud.php';
+require_once 'admincrud.php';//calling property data using require once so that if it fails it shows an error
+require_once 'PropertyData.php';
+
+
+$propdata = new PropertyData();
+$categories = $propdata->getCategories();//method calls
+$locations = $propdata->getLocations();
+$property_classes = $propdata->getPropertyClasses();
 
 $propertyCRUD = new PropertyCRUD();
 $action = $_GET['action'] ?? null;
@@ -83,23 +90,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
     }
 }
 
-// Define categories, locations, and property classes
-$categories = ['Apartment', 'Building', 'Commercial Space', 'Condominium', 'House & Lot', 'Lot w/ Unfinished Structure', 'Lot with Structure', 'Others', 'Townhouse', 'Vacant Lot', 'Warehouse'];
-$locations = [
-    "Adya", "Anilao", "Anilao-Labac", "Antipolo del Norte", "Antipolo del Sur", "Bagong Pook", "Balintawak", "Banaybanay", "Bolbok",
-     "Bugtong na Pulo", "Bulacnin", "Bulaklakan", "Calamias", "Cumba", "Dagatan", "Duhatan", "Halang", "Inosloban", "Kayumanggi", "Latag",
-      "Lodlod", "Lumbang", "Mabini", "Malagonlong", "Malitlit", "Marauoy", "Mataas na Lupa", "Munting Pulo", "Pagolingin Bata", 
-      "Pagolingin East", "Pagolingin West", "Pangao", "Pinagkawitan", "Pinagtongulan", "Plaridel", "Poblacion Barangay 1", 
-      "Poblacion Barangay 2", "Poblacion Barangay 3", "Poblacion Barangay 4", "Poblacion Barangay 5", "Poblacion Barangay 6", 
-      "Poblacion Barangay 7", "Poblacion Barangay 8", "Poblacion Barangay 9", "Poblacion Barangay 9-A", "Poblacion Barangay 10", 
-      "Poblacion Barangay 11", "Poblacion Barangay 12", "Pusil", "Quezon", "Rizal", "Sabang", "Sampaguita", "San Benito", "San Carlos", 
-      "San Celestino", "San Francisco", "San Guillermo", "San Jose", "San Lucas", "San Salvador", "San Sebastian", "Santo Niño", 
-      "Santo Toribio", "Sapac", "Sico", "Talisay", "Tambo", "Tangob", "Tanguay", "Tibig", "Tipacan"
-];
-$property_classes = ['Green',
-                    'Yellow',
-                    'Red'
-];
+
 ?>
 
 <!DOCTYPE html>
@@ -114,7 +105,9 @@ $property_classes = ['Green',
 </head>
 <body>
     <nav>
-        <div class="logo">Clavem</div>
+    <a href="index.php">
+    <div class="logo">Clavem</div>
+</a>   
         <ul class="navbar">
             <li><a href="javascript:void(0);" onclick="confirmLogout()">Logout</a></li>
         </ul>
@@ -180,17 +173,41 @@ $property_classes = ['Green',
                     <?php endforeach; ?>
                 </select>
             </div>
-            <button type="submit" class="btn btn-success"><?= $editProperty ? "Update Property" : "Post Property" ?></button>
+            <div class="form-group">
+                <label for="descr">Description</label>
+                    <!-- Textarea for description -->
+                    <textarea name="descr" id="descr" class="form-control" rows="5" required placeholder="Enter description" maxlength="500"><?= $editProperty ? htmlspecialchars($editProperty['descr']) : '' ?></textarea>
+                    <!-- Character count display -->
+                <small id="charCount" class="form-text text-muted">500 characters remaining</small>
+            </div>
+
+        <button type="submit" class="btn btn-success"><?= $editProperty ? "Update Property" : "Post Property" ?></button>
+
             <?php if ($editProperty): ?>
-                <a href="manage_properties.php" class="btn btn-secondary">Cancel</a>
+                 <a href="manage_properties.php" class="btn btn-secondary">Cancel</a>
             <?php endif; ?>
+
+    <script>
+             // JavaScript to update the character count
+            const textarea = document.getElementById('descr');
+            const charCountDisplay = document.getElementById('charCount');
+
+             // Function to update the character count
+            textarea.addEventListener('input', function() {
+           const remainingChars = 500 - textarea.value.length;
+           charCountDisplay.textContent = `${remainingChars} characters remaining`;
+    });
+
+    // Initial update on page load
+    const initialRemainingChars = 500 - textarea.value.length;
+    charCountDisplay.textContent = `${initialRemainingChars} characters remaining`;
+    </script>
         </form>
 
         <!-- List Properties -->
         <h2 class="mt-5">Properties</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
+<div>
+<table class="table table-bordered"style="width: 80%;">
                     <th>ID</th>
                     <th>Category</th>
                     <th>Location</th>
@@ -198,31 +215,29 @@ $property_classes = ['Green',
                     <th>Floor Area</th>
                     <th>Price</th>
                     <th>Classification</th>
+                    <th>Descriptions</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($properties as $property): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($property['property_id']) ?></td>
-                        <td><?= htmlspecialchars($property['categories']) ?></td>
-                        <td><?= htmlspecialchars($property['locations']) ?></td>
-                        <td><?= htmlspecialchars($property['lot_areas']) ?></td>
-                        <td><?= htmlspecialchars($property['floor_areas']) ?></td>
-                        <td><?= number_format($property['price_ranges'], 2) ?></td>
-                        <td><?= htmlspecialchars($property['property_classes']) ?></td>
-                        <td>
-                            <a href="?action=edit&id=<?= $property['property_id'] ?>" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $property['property_id'] ?>)">
-                                Delete
-                            </a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-
+            <?php foreach ($properties as $property): ?>
+    <tr>
+        <td><?= htmlspecialchars($property['property_id']) ?></td>
+        <td><?= htmlspecialchars($property['categories']) ?></td>
+        <td><?= htmlspecialchars($property['locations']) ?></td>
+        <td><?= htmlspecialchars($property['lot_areas']) ?></td>
+        <td><?= htmlspecialchars($property['floor_areas']) ?></td>
+        <td><?= number_format($property['price_ranges'], 2) ?></td>
+        <td><?= htmlspecialchars($property['property_classes']) ?></td>
+        <td><?= nl2br(htmlspecialchars($property['descr'])) ?></td>
+        <td>
+            <a href="?action=edit&id=<?= $property['property_id'] ?>" class="btn btn-primary btn-sm">Edit</a>
+            <a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $property['property_id'] ?>)">
+                Delete
+            </a>
+        </td>
+    </tr>
+<?php endforeach; ?>    
     <script>
         function confirmDelete(propertyId) {
             Swal.fire({

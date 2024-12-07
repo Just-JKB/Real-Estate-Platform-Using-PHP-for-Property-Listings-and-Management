@@ -53,9 +53,9 @@ private $price_ranges = [
 ];
 
 private $property_classes = [
-    'Green' => 'Green Tag',
-    'Yellow' => 'Yellow Tag',
-    'Red' => 'Red Tag'
+    'Green' => 'Green',
+    'Yellow' => 'Yellow',
+    'Red' => 'Red'
 ];
 
 public function getCategories()

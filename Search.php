@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<p class='card-text'><strong>Lot Area:</strong> {$lotArea} sqm</p>";
             echo "<p class='card-text'><strong>Floor Area:</strong> {$floorArea} sqm</p>";
             echo "<p class='card-text'><strong>Price:</strong> PHP {$price}</p>";
-            echo "<p class='card-text'><strong>Classification:</strong> {$classification}</p>";
+            echo "<p class='card-text'><strong>Classification:</strong> {$classification} Tag</p>";
             
     
             // More Info Button
@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <strong>Lot Area:</strong> ${lotArea} sqm <br>
             <strong>Floor Area:</strong> ${floorArea} sqm <br>
             <strong>Price:</strong> PHP ${price} <br>
-            <strong>Classification:</strong> ${classification} <br>
+            <strong>Classification:</strong> ${classification} Tag <br>
             <strong>Description:</strong> <br> ${description} <br>
         `,
         confirmButtonText: 'Close'

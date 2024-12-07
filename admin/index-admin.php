@@ -1,7 +1,7 @@
 <?php
 session_start();  // Start session to store user data
 
-require_once 'passkey.php';  // Include the users array to check credentials
+require_once '../admin/passkey.php';  // Include the users array to check credentials
 
 // Check if the user is already logged in
 if (isset($_SESSION['username'])) {
@@ -25,9 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Redirect based on user role
             if ($_SESSION['role'] == 'admin') {
-                header('Location: manage_properties.php');  // Redirect to Admin Dashboard
+                header('Location: ../admin/manage_properties.php');  // Redirect to Admin Dashboard
             } else {
-                header('Location: index.php');  // Redirect to User Dashboard
+                header('Location:../guest/index.php');  // Redirect to User Dashboard
             }
             exit;
         } else {
@@ -45,13 +45,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clavem</title>
-    <link rel="stylesheet" href="Styles/stylelogin.css">
+    <link rel="stylesheet" href="../Styles/stylelogin.css">
 </head>
 <body> 
 
 <nav>
     <div class="logo">
-    <img src="logo\clavem-logo.png.png" alt="Clavem" height="50" class="img-size"> <!-- Add your logo image here -->
+    <img src="../logo/clavem-logo.png.png" alt="Clavem" height="50" class="img-size"> <!-- Add your logo image here -->
     </div>
 </nav>
 

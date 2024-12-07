@@ -25,7 +25,9 @@ $property_classes = $propertyData->getPropertyClasses();
 </head>
 <body>
     <nav>
-        <div class="logo">Clavem</div>
+    <a href="index.php">
+    <div class="logo">Clavem</div>
+</a>   
         <ul class="navbar">
             <li><a href="index.php">Home</a></li>
             <li><a href="About.html">About Us</a></li>
